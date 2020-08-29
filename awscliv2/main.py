@@ -9,7 +9,6 @@ import sys
 from pathlib import Path
 from typing import Sequence
 
-
 IMAGE_NAME = "amazon/aws-cli"
 DOCKER_PATH = "docker"
 
