@@ -31,7 +31,7 @@ def parse_args(args: Sequence[str]) -> argparse.Namespace:
     """
     Parse CLI arguments.
     """
-    parser = argparse.ArgumentParser("aws", description="Can be used as a regular AWS CLI v2")
+    parser = argparse.ArgumentParser("awsv2", description="Can be used as a regular AWS CLI v2")
     parser.add_argument(
         "--configure", nargs="+", help="Configure profile: <name> <access_key> <secret_key>"
     )
