@@ -11,6 +11,7 @@ from typing import Sequence
 
 
 IMAGE_NAME = "amazon/aws-cli"
+DOCKER_PATH = "docker"
 
 
 class AWSCLIError(BaseException):
@@ -49,7 +50,7 @@ def run_awscli_v2(args: Sequence[str]) -> None:
     """
     # raise ValueError(args)
     cmd = (
-        f"docker run --rm -it -v {Path.home().as_posix()}/.aws:/root/.aws"
+        f"{DOCKER_PATH} run --rm -it -v {Path.home().as_posix()}/.aws:/root/.aws"
         f" -v {Path.cwd().as_posix()}:/aws {IMAGE_NAME}"
     )
     try:
@@ -68,7 +69,7 @@ def main(args: Sequence[str]) -> None:
 
     if namespace.update:
         try:
-            subprocess.check_call(["docker", "pull", IMAGE_NAME])
+            subprocess.check_call([DOCKER_PATH, "pull", IMAGE_NAME])
         except FileNotFoundError:
             raise AWSCLIError("Docker not found: https://docs.docker.com/get-docker/")
         sys.exit(0)
