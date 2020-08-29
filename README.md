@@ -38,6 +38,7 @@ AWS_SECRET_ACCESS_KEY='my-secret-key'
 
 # --configure profile_name access_key secret_key
 awsv2 --configure default ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY}
+awsv2 configure set region us-west-1
 ```
 
 Use `awscli` as usual:
