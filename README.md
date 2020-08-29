@@ -24,6 +24,24 @@ Container uses two volumes:
 - `$HOME/.aws` -> `/root/.aws`
 - `$(cwd)` -> `/aws`
 
+Pull latest `amazon/aws-cli` image:
+
+```bash
+awsv2 --update
+```
+
+Configure default frofile if needed:
+
+```bash
+AWS_ACCESS_KEY_ID='my-access-key'
+AWS_SECRET_ACCESS_KEY='my-secret-key'
+
+# --configure profile_name access_key secret_key
+awsv2 --configure default ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY}
+```
+
+Use `awscli` as usual:
+
 ```bash
 # alias for
 # docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli $@
@@ -31,16 +49,6 @@ awsv2 s3 ls
 
 # or as a python module
 python -m awscliv2 s3 ls
-```
-
-Add new profile from ENV variables:
-
-```bash
-AWS_ACCESS_KEY_ID='my-access-key'
-AWS_SECRET_ACCESS_KEY='my-secret-key'
-
-# --configure profile_name access_key secret_key region_name
-awsv2 --configure profile_name ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} us-west-1
 ```
 
 ## Versioning

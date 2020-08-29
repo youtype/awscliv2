@@ -10,6 +10,9 @@ from pathlib import Path
 from typing import Sequence
 
 
+IMAGE_NAME = "amazon/aws-cli"
+
+
 class AWSCLIError(BaseException):
     """
     Main error for awscliv2.
@@ -27,14 +30,14 @@ def parse_args(args: Sequence[str]) -> argparse.Namespace:
     """
     Parse CLI arguments.
     """
-    version_path = Path(__file__).parent / "version.txt"
-    version = version_path.read_text() if version_path.exists() else "0.0.0"
-
     parser = argparse.ArgumentParser("aws", description="Can be used as a regular AWS CLI v2")
     parser.add_argument(
-        "--configure", nargs="+", help="Configure a new profile <name> <key> <secret> <region>"
+        "--configure", nargs="+", help="Configure profile: <name> <access_key> <secret_key>"
     )
-    parser.add_argument("-V", action="version", version=version, help="Show version")
+    parser.add_argument("-V", "--version", action="store_true", help="Show version")
+    parser.add_argument(
+        "-U", "--update", action="store_true", help=f"Pull latest {IMAGE_NAME} docker image"
+    )
     namespace, other = parser.parse_known_args(args)
     namespace.other = other
     return namespace
@@ -44,9 +47,10 @@ def run_awscli_v2(args: Sequence[str]) -> None:
     """
     Run dockerized AWS CLI.
     """
+    # raise ValueError(args)
     cmd = (
         f"docker run --rm -it -v {Path.home().as_posix()}/.aws:/root/.aws"
-        f" -v {Path.cwd().as_posix()}:/aws amazon/aws-cli"
+        f" -v {Path.cwd().as_posix()}:/aws {IMAGE_NAME}"
     )
     try:
         subprocess.check_call([*shlex.split(cmd), *args])
@@ -61,13 +65,26 @@ def main(args: Sequence[str]) -> None:
     Main program entrypoint.
     """
     namespace = parse_args(args)
+
+    if namespace.update:
+        try:
+            subprocess.check_call(["docker", "pull", IMAGE_NAME])
+        except FileNotFoundError:
+            raise AWSCLIError("Docker not found: https://docs.docker.com/get-docker/")
+        sys.exit(0)
+
+    if namespace.version:
+        version_path = Path(__file__).parent / "version.txt"
+        version = version_path.read_text().strip() if version_path.exists() else "0.0.0"
+        print(version)
+        run_awscli_v2(["--version"])
+        sys.exit(0)
+
     if namespace.configure:
         try:
-            profile_name, key, secret, region = namespace.configure[:4]
+            profile_name, key, secret = namespace.configure[:3]
         except ValueError:
-            raise AWSCLIError(
-                "Use --configure <profile_name> <access_key> <secret_key> <profile_name>"
-            )
+            raise AWSCLIError("Use --configure <profile_name> <access_key> <secret_key>")
 
         aws_path = Path.home() / ".aws"
         aws_path.mkdir(exist_ok=True)
@@ -76,7 +93,6 @@ def main(args: Sequence[str]) -> None:
             "User Name,Access Key ID,Secret Access key\n" f"{profile_name},{key},{secret}\n"
         )
         run_awscli_v2(["configure", "import", "--csv", "file:///root/.aws/creds.csv"])
-        run_awscli_v2(["configure", "set", "region", region])
         creds_path.unlink()
         return
 
