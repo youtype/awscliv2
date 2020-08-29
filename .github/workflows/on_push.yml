@@ -1,0 +1,41 @@
+name: Lint and test changes
+
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+      - "awscliv2/version.txt"
+      - "CHANGELOG.md"
+      - "README.md"
+
+jobs:
+  code-style:
+    name: Code style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+          key: 3.8-pip-${{ hashFiles('**/Pipfile.lock') }}
+          restore-keys: |
+            3.8-pip-
+      - name: Install dependencies
+        run: |
+          python -m pip install -U pip
+          python -m pip install flake8 pyright isort black
+          yarn global add pyright
+          echo "::add-path::$(yarn global bin)"
+      - name: Install
+        run: |
+          python setup.py install
+      - name: Lint
+        run: |
+          flake8 awscliv2
+          black --check awscliv2
+          isort -c awscliv2/**/*.py
+          pyright awscliv2

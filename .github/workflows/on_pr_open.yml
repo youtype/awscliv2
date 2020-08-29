@@ -1,0 +1,83 @@
+name: Assign PullRequest labels
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR issue
+        uses: actions/github-script@0.9.0
+        id: issue
+        with:
+          script: |
+            const response = await github.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            })
+            console.log('issue', response.data)
+            return response.data
+      - name: Build labels
+        uses: actions/github-script@0.9.0
+        id: labels
+        with:
+          script: |
+            const issue = ${{ steps.issue.outputs.result }}
+
+            const EOL = '\r\n'
+            const strip = s => s.replace(/^\s+|\s+$/g, '')
+
+            const prTitles = [
+              'Added',
+              'Changed',
+              'Deprecated',
+              'Removed',
+              'Fixed'
+            ]
+            const getSections = (noteText, titles) => {
+              const parts = `${EOL}${noteText}`.split(`${EOL}### `).slice(1).filter(part => part.length)
+              return parts.map(
+                part => {
+                  const lines = part.split(EOL).filter(line => !line.startsWith('- **NOTE** '))
+                  let lastLineIndex = lines.findIndex(line => line.startsWith('## '))
+                  lastLineIndex = lastLineIndex >= 0 ? lastLineIndex : 99999
+                  return [
+                    strip(lines.slice(0, 1).join('')),
+                    strip(lines.slice(1, lastLineIndex).join(EOL)),
+                  ]
+                }
+              ).filter(
+                ([title, content]) => titles.includes(title) && content.length
+              )
+            }
+
+            const noteTitles = getSections(issue.body, prTitles).map(([title, content]) => title)
+            console.log('Note titles', noteTitles)
+            const managedLabels = ['patch', 'minor', 'major']
+            const labels = issue.labels.map(data => data.name).filter(label => !managedLabels.includes(label))
+            const majorTitles = ['Removed'].filter(sectionTitle => noteTitles.includes(sectionTitle))
+            const minorTitles = ['Added', 'Changed', 'Deprecated'].filter(sectionTitle => noteTitles.includes(sectionTitle))
+            if (majorTitles.length) {
+              return [...labels, 'major']
+            }
+            if (minorTitles.length) {
+              return [...labels, 'minor']
+            }
+            return [...labels, 'patch']
+      - name: Assign labels
+        uses: actions/github-script@0.9.0
+        with:
+          script: |
+            const labels = ${{ steps.labels.outputs.result }}
+            console.log('Assigned labels', labels)
+
+            await github.issues.replaceLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: labels
+            })
