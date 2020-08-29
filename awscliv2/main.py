@@ -52,6 +52,8 @@ def run_awscli_v2(args: Sequence[str]) -> None:
         subprocess.check_call([*shlex.split(cmd), *args])
     except subprocess.CalledProcessError as e:
         raise AWSCLIError(returncode=e.returncode)
+    except FileNotFoundError:
+        raise AWSCLIError("Docker not found: https://docs.docker.com/get-docker/")
 
 
 def main(args: Sequence[str]) -> None:
