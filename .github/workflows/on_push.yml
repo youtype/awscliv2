@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install -U pip
-          python -m pip install flake8 pyright isort black
+          python -m pip install flake8 isort black
           yarn global add pyright
           echo "::add-path::$(yarn global bin)"
       - name: Install
