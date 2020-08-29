@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install -U pip
-          python -m pip install flake8 isort black toml
+          python -m pip install flake8 isort black
           yarn global add pyright
           echo "::add-path::$(yarn global bin)"
       - name: Install
@@ -37,5 +37,5 @@ jobs:
         run: |
           flake8 awscliv2
           black --check awscliv2
-          isort -c awscliv2/**/*.py
+          isort -c awscliv2 -v --sp ./pyproject.toml
           pyright awscliv2
