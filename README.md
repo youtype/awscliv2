@@ -1,5 +1,8 @@
 # AWS CLI v2
 
+[![PyPI - awscliv2](https://img.shields.io/pypi/v/awscliv2.svg?color=blue&label=awscliv2)](https://pypi.org/project/awscliv2)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/awscliv2.svg?color=blue)](https://pypi.org/project/awscliv2)
+
 Wrapper for dockerized [AWS CLI v2](https://github.com/aws/aws-cli/tree/v2).
 Uses [amazon/aws-cli](https://hub.docker.com/r/amazon/aws-cli) Docker image.
 
