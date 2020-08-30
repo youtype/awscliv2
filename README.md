@@ -54,12 +54,14 @@ Use `awscli` as usual:
 
 ```bash
 # alias for
-# docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli $@
+# docker run --rm -i -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli $@
 awsv2 s3 ls
 
 # or as a python module
 python -m awscliv2 s3 ls
 ```
+
+Also, you can check [example.sh](https://github.com/vemel/awscliv2/blob/master/example.sh)
 
 ## Versioning
 
