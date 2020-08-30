@@ -1,3 +1,8 @@
+"""
+All exceptions for programmatical usage.
+"""
+
+
 class AWSCLIError(BaseException):
     """
     Main error for awscliv2.
@@ -12,8 +17,16 @@ class AWSCLIError(BaseException):
 
 
 class SubprocessError(BaseException):
+    """
+    Subprocess interrupted error.
+    """
+
     pass
 
 
 class ExecutableNotFoundError(BaseException):
+    """
+    Subprocess cannot find an executable error.
+    """
+
     pass
