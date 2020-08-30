@@ -1,34 +1,15 @@
 """
 Main entrypoint for CLI.
 """
-import argparse
-import logging
 import sys
 from pathlib import Path
 from typing import Sequence
 
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
 from awscliv2.interactive_process import InteractiveProcess
-
-IMAGE_NAME = "amazon/aws-cli"
-DOCKER_PATH = "docker"
-
-
-def parse_args(args: Sequence[str]) -> argparse.Namespace:
-    """
-    Parse CLI arguments.
-    """
-    parser = argparse.ArgumentParser("awsv2", description="Can be used as a regular AWS CLI v2")
-    parser.add_argument(
-        "--configure", nargs="+", help="Configure profile: <name> <access_key> <secret_key>"
-    )
-    parser.add_argument("-V", "--version", action="store_true", help="Show version")
-    parser.add_argument(
-        "-U", "--update", action="store_true", help=f"Pull latest {IMAGE_NAME} docker image"
-    )
-    namespace, other = parser.parse_known_args(args)
-    namespace.other = other
-    return namespace
+from awscliv2.logger import get_logger
+from awscliv2.cli_parser import parse_args
+from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
 
 
 def run_subprocess(cmd: Sequence[str]) -> None:
@@ -119,5 +100,6 @@ def main_cli() -> None:
     except AWSCLIError as e:
         message = str(e)
         if message:
-            logging.error(message)
+            logger = get_logger()
+            logger.error(message)
         sys.exit(e.returncode)
