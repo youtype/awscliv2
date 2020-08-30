@@ -20,6 +20,12 @@ Install [Docker](https://docs.docker.com/get-docker/).
 pip install awscliv2
 ```
 
+You can add an alias to your `~/.bashrc` or `/zshrc` to use it as a regular `AWS CLI v2`
+
+```bash
+alias aws='awsv2'
+```
+
 ## Usage
 
 Container uses two volumes:
