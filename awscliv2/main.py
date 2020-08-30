@@ -5,11 +5,11 @@ import sys
 from pathlib import Path
 from typing import Sequence
 
+from awscliv2.cli_parser import parse_args
+from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
 from awscliv2.interactive_process import InteractiveProcess
 from awscliv2.logger import get_logger
-from awscliv2.cli_parser import parse_args
-from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
 
 
 def run_subprocess(cmd: Sequence[str]) -> None:
