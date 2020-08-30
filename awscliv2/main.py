@@ -3,27 +3,15 @@ Main entrypoint for CLI.
 """
 import argparse
 import logging
-import shlex
-import subprocess
 import sys
 from pathlib import Path
 from typing import Sequence
 
+from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
+from awscliv2.interactive_process import InteractiveProcess
+
 IMAGE_NAME = "amazon/aws-cli"
 DOCKER_PATH = "docker"
-
-
-class AWSCLIError(BaseException):
-    """
-    Main error for awscliv2.
-    """
-
-    def __init__(self, msg: str = "", returncode: int = 1) -> None:
-        self.msg = msg
-        self.returncode = returncode
-
-    def __str__(self) -> str:
-        return self.msg
 
 
 def parse_args(args: Sequence[str]) -> argparse.Namespace:
@@ -43,20 +31,40 @@ def parse_args(args: Sequence[str]) -> argparse.Namespace:
     return namespace
 
 
+def run_subprocess(cmd: Sequence[str]) -> None:
+    """
+    Run interactive subprocess.
+    """
+    process = InteractiveProcess(cmd)
+    try:
+        returncode = process.run()
+    except SubprocessError as e:
+        raise AWSCLIError(str(e))
+
+    if returncode:
+        raise AWSCLIError(returncode=returncode)
+
+
 def run_awscli_v2(args: Sequence[str]) -> None:
     """
     Run dockerized AWS CLI.
     """
-    # raise ValueError(args)
-    cmd = (
-        f"{DOCKER_PATH} run --rm -it -v {Path.home().as_posix()}/.aws:/root/.aws"
-        f" -v {Path.cwd().as_posix()}:/aws {IMAGE_NAME}"
-    )
     try:
-        subprocess.check_call([*shlex.split(cmd), *args])
-    except subprocess.CalledProcessError as e:
-        raise AWSCLIError(returncode=e.returncode)
-    except FileNotFoundError:
+        run_subprocess(
+            [
+                DOCKER_PATH,
+                "run",
+                "-i",
+                "--rm",
+                "-v",
+                f"{Path.home().as_posix()}/.aws:/root/.aws",
+                "-v",
+                f"{Path.cwd().as_posix()}:/aws",
+                IMAGE_NAME,
+                *args,
+            ]
+        )
+    except ExecutableNotFoundError:
         raise AWSCLIError("Docker not found: https://docs.docker.com/get-docker/")
 
 
@@ -68,7 +76,7 @@ def main(args: Sequence[str]) -> None:
 
     if namespace.update:
         try:
-            subprocess.check_call([DOCKER_PATH, "pull", IMAGE_NAME])
+            run_subprocess([DOCKER_PATH, "pull", IMAGE_NAME])
         except FileNotFoundError:
             raise AWSCLIError("Docker not found: https://docs.docker.com/get-docker/")
         sys.exit(0)
