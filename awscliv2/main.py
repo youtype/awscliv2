@@ -53,6 +53,8 @@ def run_awscli_v2(args: Sequence[str]) -> None:
 
 def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> None:
     aws_path = Path.home() / ".aws"
+    if not aws_path.exists():
+        aws_path.mkdir(parents=True, exist_ok=True)
     config_path = aws_path / "config"
     config = ConfigParser()
     if not config_path.exists():
@@ -70,6 +72,8 @@ def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> No
 
 def run_configure(profile_name: str, key: str, secret: str) -> None:
     aws_path = Path.home() / ".aws"
+    if not aws_path.exists():
+        aws_path.mkdir(parents=True, exist_ok=True)
     credentials_path = aws_path / "credentials"
     if not credentials_path.exists():
         credentials_path.write_text("")
