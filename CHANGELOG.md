@@ -7,6 +7,12 @@ and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/)
 
 # [Released]
 
+## [1.3.1] - 2020-09-02
+
+### Fixed
+
+- Error if `$HOME/.aws` path does not exist
+
 ## [1.3.0] - 2020-09-02
 
 ### Added
