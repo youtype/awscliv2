@@ -5,7 +5,7 @@ import sys
 from configparser import ConfigParser
 from io import StringIO
 from pathlib import Path
-from typing import Sequence
+from typing import Sequence, Optional
 
 from awscliv2.cli_parser import parse_args
 from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
@@ -70,7 +70,7 @@ def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> No
     get_logger().info(f"Successfully added {profile_name} to {config_path.as_posix()}")
 
 
-def run_configure(profile_name: str, key: str, secret: str) -> None:
+def run_configure(profile_name: str, key: str, secret: str, session_token: str = "") -> None:
     aws_path = Path.home() / ".aws"
     if not aws_path.exists():
         aws_path.mkdir(parents=True, exist_ok=True)
@@ -78,13 +78,18 @@ def run_configure(profile_name: str, key: str, secret: str) -> None:
     if not credentials_path.exists():
         credentials_path.write_text("")
 
-    aws_path.mkdir(exist_ok=True)
-    creds_path = aws_path / "creds.csv"
-    creds_path.write_text(
-        "User Name,Access Key ID,Secret Access key\n" f"{profile_name},{key},{secret}\n"
-    )
-    run_awscli_v2(["configure", "import", "--csv", "file:///root/.aws/creds.csv"])
-    creds_path.unlink()
+    config = ConfigParser()
+    config.read(credentials_path)
+    credentials = {"aws_access_key_id": key, "aws_secret_access_key": secret}
+    if session_token:
+        credentials["aws_session_token"] = session_token
+
+    config[profile_name] = credentials
+
+    output = StringIO()
+    config.write(output)
+    credentials_path.write_text(output.getvalue())
+
     get_logger().info(f"Successfully added {profile_name} to {credentials_path.as_posix()}")
 
 
@@ -110,19 +115,17 @@ def main(args: Sequence[str]) -> None:
 
     if namespace.assume_role:
         try:
-            profile_name, source_profile, role_arn = namespace.assume_role[:3]
-        except ValueError:
+            return run_assume_role(*namespace.assume_role[:3])
+        except TypeError:
             raise AWSCLIError("Use --assume-role <profile_name> <access_key> <secret_key>")
-
-        return run_assume_role(profile_name, source_profile, role_arn)
 
     if namespace.configure:
         try:
-            profile_name, key, secret = namespace.configure[:3]
-        except ValueError:
-            raise AWSCLIError("Use --configure <profile_name> <access_key> <secret_key>")
-
-        return run_configure(profile_name, key, secret)
+            return run_configure(*namespace.configure[:4])
+        except TypeError:
+            raise AWSCLIError(
+                "Use --configure <profile_name> <access_key> <secret_key> [<session_token>]"
+            )
 
     if not namespace.other:
         raise AWSCLIError("No command provided")

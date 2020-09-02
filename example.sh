@@ -19,7 +19,7 @@ awsv2 configure
 awsv2 confgiure set region us-west-1
 
 # or in non-interactive environment
-# --configure <name> <access_key> <secret_key>
+# --configure <name> <access_key> <secret_key> [<session_token>]
 awsv2 --configure default access_key secret_key
 
 # use AWS CLI v2 as usual
