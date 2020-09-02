@@ -10,4 +10,4 @@ awscliv2 = {path = ".",editable = true}
 rope = "*"
 flake8 = "*"
 isort = "*"
-black = "==19.10b0"
+black = "==20.8b1"
