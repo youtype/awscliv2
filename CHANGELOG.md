@@ -7,6 +7,16 @@ and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/)
 
 # [Released]
 
+## [1.4.0] - 2020-09-02
+
+### Added
+
+- `aws_session_token` support to `awsv2 --configure`
+
+### Changed
+
+- `awsv2 --configure` no longer runs docker, changes file locally instead
+
 ## [1.3.1] - 2020-09-02
 
 ### Fixed
