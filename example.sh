@@ -18,7 +18,13 @@ awsv2 -U
 awsv2 configure
 
 # or in non-interactive environment
+# --configure <name> <access_key> <secret_key>
 awsv2 --configure default access_key secret_key
 
 # use AWS CLI v2 as usual
 awsv2 s3 ls
+
+# assume role and use it
+# --assume-role <name> <source_profile> <role_arn>
+awsv2 --assume-role my-role default arn:aws:iam::1234:role/my-role
+awsv2 --profile my-role s3 ls
