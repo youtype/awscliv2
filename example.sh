@@ -16,6 +16,7 @@ awsv2 -U
 
 # configure your default profile
 awsv2 configure
+awsv2 confgiure set region us-west-1
 
 # or in non-interactive environment
 # --configure <name> <access_key> <secret_key>
