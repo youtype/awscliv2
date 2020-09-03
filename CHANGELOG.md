@@ -7,6 +7,13 @@ and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/)
 
 # [Released]
 
+## [1.4.1] - 2020-09-03
+
+### Fixed
+
+- `awsv2 --assume-role` command now sets `aws_session_token` in `~/.aws/credentials`
+- `awsv2 configure` sometimes did not output to `stdout` correctly
+
 ## [1.4.0] - 2020-09-02
 
 ### Added
