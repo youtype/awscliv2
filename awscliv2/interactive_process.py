@@ -6,7 +6,7 @@ import subprocess
 import sys
 import threading
 from subprocess import Popen
-from typing import Sequence
+from typing import Sequence, TextIO
 
 from awscliv2.exceptions import ExecutableNotFoundError, SubprocessError
 
@@ -17,36 +17,40 @@ class InteractiveProcess:
     """
 
     read_timeout = 0.2
+    default_stdout: TextIO = sys.stdout
+    default_stdin: TextIO = sys.stdin
 
     def __init__(self, command: Sequence[str]) -> None:
         self.command = list(command)
         self.finished = True
 
-    @staticmethod
-    def writeall(process: Popen) -> None:
-        while True:
-            data = process.stdout.read(1).decode("utf-8")
-            if not data:
-                break
-            sys.stdout.write(data)
-            sys.stdout.flush()
-
-    def readall(self, process: Popen) -> None:
+    def writeall(self, process: Popen, stdout: TextIO) -> None:
         while True:
             if self.finished:
                 break
 
-            rlist = select.select([sys.stdin], [], [], self.read_timeout)[0]
+            output_data = process.stdout.read(1)
+            if not output_data:
+                break
+            stdout.write(output_data.decode("utf-8"))
+            stdout.flush()
+
+    def readall(self, process: Popen, stdin: TextIO) -> None:
+        while True:
+            if self.finished:
+                break
+
+            rlist = select.select([stdin], [], [], self.read_timeout)[0]
             if not rlist:
                 continue
 
-            data = sys.stdin.read(1)
-            if not data:
+            input_data = stdin.readline()
+            if not input_data:
                 break
-            process.stdin.write(data.encode())
+            process.stdin.write(input_data.encode())
             process.stdin.flush()
 
-    def run(self) -> int:
+    def run(self, stdin: TextIO = default_stdin, stdout: TextIO = default_stdout) -> int:
         self.finished = False
         try:
             process = Popen(
@@ -58,8 +62,8 @@ class InteractiveProcess:
         except FileNotFoundError:
             raise ExecutableNotFoundError(self.command[0])
 
-        writer = threading.Thread(target=self.writeall, args=(process,))
-        reader = threading.Thread(target=self.readall, args=(process,))
+        writer = threading.Thread(target=self.writeall, args=(process, stdout))
+        reader = threading.Thread(target=self.readall, args=(process, stdin))
         reader.start()
         writer.start()
         try:
