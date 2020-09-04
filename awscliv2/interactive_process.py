@@ -26,9 +26,6 @@ class InteractiveProcess:
 
     def writeall(self, process: Popen, stdout: TextIO) -> None:
         while True:
-            if self.finished:
-                break
-
             output_data = process.stdout.read(1)
             if not output_data:
                 break
