@@ -11,8 +11,8 @@ python -m pip install awscliv2
 # useful if you want to use `aws` instead of `awsv2`
 alias aws='awsv2'
 
-# optionally pull latest amazon/aws-cli image
-awsv2 -U
+# optionally install AWS CLI v2 binaries
+awsv2 --install
 
 # configure your default profile
 awsv2 configure

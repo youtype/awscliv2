@@ -1,7 +1,7 @@
 import argparse
 from typing import Sequence
 
-from awscliv2.constants import IMAGE_NAME, PROG_NAME
+from awscliv2.constants import PROG_NAME
 
 
 def parse_args(args: Sequence[str]) -> argparse.Namespace:
@@ -19,8 +19,9 @@ def parse_args(args: Sequence[str]) -> argparse.Namespace:
     )
     parser.add_argument("-V", "--version", action="store_true", help="Show version")
     parser.add_argument(
-        "-U", "--update", action="store_true", help=f"Pull latest {IMAGE_NAME} docker image"
+        "-U", "--update", action="store_true", help="Install AWS CLI v2 (deprecated)"
     )
+    parser.add_argument("-i", "--install", action="store_true", help="Install AWS CLI v2")
     namespace, other = parser.parse_known_args(args)
     namespace.other = other
     return namespace

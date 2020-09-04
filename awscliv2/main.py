@@ -6,51 +6,63 @@ import sys
 from configparser import ConfigParser
 from io import StringIO
 from pathlib import Path
-from typing import Optional, Sequence, TextIO
+from typing import Optional, Sequence, TextIO, List
 
 from awscliv2.cli_parser import parse_args
 from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
+from awscliv2.installers import install_multiplatform
 from awscliv2.interactive_process import InteractiveProcess
 from awscliv2.logger import get_logger
 
 
-def run_subprocess(cmd: Sequence[str], stdout: TextIO = sys.stdout) -> None:
+def run_subprocess(cmd: Sequence[str], stdout: TextIO = sys.stdout) -> int:
     """
     Run interactive subprocess.
     """
     process = InteractiveProcess(cmd)
     try:
-        returncode = process.run(stdout=stdout)
+        return_code = process.run(stdout=stdout)
     except SubprocessError as e:
         raise AWSCLIError(str(e))
 
-    if returncode:
-        raise AWSCLIError(returncode=returncode)
+    return return_code
 
 
-def run_awscli_v2(args: Sequence[str], stdout: TextIO = sys.stdout) -> None:
+def get_awscli_v2_cmd() -> List[str]:
+    local_paths = [
+        Path.home() / ".awscliv2" / "binaries" / "aws",
+        Path.home() / "aws-cli" / "aws",
+    ]
+    for local_path in local_paths:
+        if local_path.exists():
+            return [local_path.as_posix()]
+
+    return [
+        DOCKER_PATH,
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        f"{Path.home().as_posix()}/.aws:/root/.aws",
+        "-v",
+        f"{Path.cwd().as_posix()}:/aws",
+        IMAGE_NAME,
+    ]
+
+
+def run_awscli_v2(args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
     """
     Run dockerized AWS CLI.
     """
+    cmd = [
+        *get_awscli_v2_cmd(),
+        *args,
+    ]
     try:
-        run_subprocess(
-            [
-                DOCKER_PATH,
-                "run",
-                "-i",
-                "--rm",
-                "-v",
-                f"{Path.home().as_posix()}/.aws:/root/.aws",
-                "-v",
-                f"{Path.cwd().as_posix()}:/aws",
-                IMAGE_NAME,
-                *args,
-            ],
-            stdout=stdout,
-        )
+        return run_subprocess(cmd, stdout=stdout)
     except ExecutableNotFoundError:
-        raise AWSCLIError("Docker not found: https://docs.docker.com/get-docker/")
+        raise AWSCLIError(f"Executable not found: {cmd[0]}")
 
 
 def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> None:
@@ -62,7 +74,7 @@ def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> No
         credentials_path.write_text("")
 
     stdout = StringIO()
-    run_awscli_v2(
+    return_code = run_awscli_v2(
         [
             "--profile",
             source_profile,
@@ -75,6 +87,9 @@ def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> No
         ],
         stdout=stdout,
     )
+    if return_code:
+        raise AWSCLIError(stdout.getvalue().strip())
+
     credentials_json = stdout.getvalue()
     credentials_data = json.loads(credentials_json)
     set_credentials(
@@ -125,18 +140,21 @@ def main(args: Sequence[str]) -> None:
     namespace = parse_args(args)
 
     if namespace.update:
-        try:
-            run_subprocess([DOCKER_PATH, "pull", IMAGE_NAME])
-        except FileNotFoundError:
-            raise AWSCLIError("Docker not found: https://docs.docker.com/get-docker/")
+        install_multiplatform()
+        run_awscli_v2(["--version"])
         sys.exit(0)
+
+    if namespace.install:
+        install_multiplatform()
+        sys.exit(run_awscli_v2(["--version"]))
 
     if namespace.version:
         version_path = Path(__file__).parent / "version.txt"
         version = version_path.read_text().strip() if version_path.exists() else "0.0.0"
         print(version)
-        run_awscli_v2(["--version"])
-        sys.exit(0)
+        cmd = " ".join(get_awscli_v2_cmd())
+        print(f"AWS CLI v2 command: {cmd}")
+        sys.exit(run_awscli_v2(["--version"]))
 
     if namespace.assume_role:
         try:
@@ -155,7 +173,7 @@ def main(args: Sequence[str]) -> None:
     if not namespace.other:
         raise AWSCLIError("No command provided")
 
-    run_awscli_v2(namespace.other)
+    sys.exit(run_awscli_v2(namespace.other))
 
 
 def main_cli() -> None:

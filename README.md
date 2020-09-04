@@ -3,15 +3,22 @@
 [![PyPI - awscliv2](https://img.shields.io/pypi/v/awscliv2.svg?color=blue&label=awscliv2)](https://pypi.org/project/awscliv2)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/awscliv2.svg?color=blue)](https://pypi.org/project/awscliv2)
 
-Wrapper for dockerized [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html)
-based on [amazon/aws-cli](https://hub.docker.com/r/amazon/aws-cli) Docker image.
+Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html).
 
 - [AWS CLI v2](#aws-cli-v2)
+  - [Before you start](#before-you-start)
   - [Installation](#installation)
   - [Usage](#usage)
     - [Extra commands](#extra-commands)
   - [Versioning](#versioning)
   - [Latest changes](#latest-changes)
+
+## Before you start
+
+- This is not an official AWS CLI application
+- Check the source code of this app, as you are working with sensitive data
+- By default this app uses docker image`amazon/aws-cli`, but I recommend to run `awsv2 --install` to install binaries
+- Cross-check the source code of this app once again
 
 ## Installation
 
@@ -34,13 +41,14 @@ Container uses two volumes:
 - `$HOME/.aws` -> `/root/.aws` - credentials and config store
 - `$(cwd)` -> `/aws` - Docker image workdir
 
-Pull latest `amazon/aws-cli` image:
+Install `AWS CLI v2`:
 
 ```bash
-awsv2 --update
+# do not worry if this fails, you can still use awsv2
+awsv2 --install
 ```
 
-Configure default frofile if needed:
+Configure default profile if needed:
 
 ```bash
 AWS_ACCESS_KEY_ID='my-access-key'
@@ -68,10 +76,10 @@ Also, you can check [example.sh](https://github.com/vemel/awscliv2/blob/master/e
 
 `awscliv2` contains a few commands to make your life easier, especially in CI or any non-TTY environment.
 
-- `awsv2 -U/--update` - Pull `amazon/aws-cli:latest` Docker image
+- `awsv2 -U/--update/--install` - Install `AWS CLI v2`
 - `awsv2 --configure <profile_name> <aws_access_key_id> <aws_secret_access_key> [<aws_session_token>]` - set profile in `~/.aws/credentials`
 - `awsv2 --assume-role <profile_name> <source_profile> <role_arn>` - create a new profile with assume role credentials
-- `awsv2 -V/--version` - Output `awscliv2` and `amazon/aws-cli` versions
+- `awsv2 -V/--version` - Output `awscliv2` and `AWS CLI v2` versions
 
 ## Versioning
 
