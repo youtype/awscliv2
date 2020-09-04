@@ -7,6 +7,23 @@ and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/)
 
 # [Released]
 
+## [1.5.0] - 2020-09-04
+
+### Added
+
+- `awsv2 --install` command to install `AWS CLI v2` (Linux and MacOS are supported)
+- `awsv2` checks `~/.awscliv2/dist/aws` and `~/aws-cli/aws` paths before fallback to Docker image
+
+### Changed
+
+- `awsv2 --update` is now an alias for `awsv2 --install`
+- `awsv2 --version` outputs path to current `AWS CLI v2` executable
+
+### Fixed
+
+- Subprocesses always wait for all output to be processed
+- `awsv2 --assume-role` did not use JSON output correctly
+
 ## [1.4.1] - 2020-09-03
 
 ### Fixed
