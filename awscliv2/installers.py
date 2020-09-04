@@ -30,6 +30,7 @@ def install_macos() -> None:
     Install AWS CLI v2 for MacOS.
     """
     logger = get_logger()
+    logger.info("Installing AWS CLI v2 for MacOS")
     install_path = Path.home()
     output_install_path = install_path / "aws-cli"
     if install_path.exists():
@@ -74,6 +75,7 @@ def install_linux(url) -> None:
     Install AWS CLI v2 for Linux from `url`.
     """
     logger = get_logger()
+    logger.info("Installing AWS CLI v2 for Linux")
     temp_dir = Path(TemporaryDirectory().name)
     install_path = Path.home() / ".awscliv2"
     if install_path.exists():
