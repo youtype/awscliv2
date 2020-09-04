@@ -9,7 +9,9 @@ Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/lates
   - [Before you start](#before-you-start)
   - [Installation](#installation)
   - [Usage](#usage)
+    - [Docker fallback](#docker-fallback)
     - [Extra commands](#extra-commands)
+  - [How to help](#how-to-help)
   - [Versioning](#versioning)
   - [Latest changes](#latest-changes)
 
@@ -34,11 +36,6 @@ alias aws='awsv2'
 ```
 
 ## Usage
-
-Container uses two volumes:
-
-- `$HOME/.aws` -> `/root/.aws` - credentials and config store
-- `$(cwd)` -> `/aws` - Docker image workdir
 
 Install `AWS CLI v2`:
 
@@ -71,6 +68,17 @@ python -m awscliv2 s3 ls
 
 Also, you can check [example.sh](https://github.com/vemel/awscliv2/blob/master/example.sh)
 
+### Docker fallback
+
+Unless you run `awsv2 --install` once, application will use [amazon/aws-cli](https://hub.docker.com/r/amazon/aws-cli) Docker image. The image is not ideal, and it uses `root` user, so fix downloaded file permissions manually. Or just run `awsv2 --install`
+
+Update it with `docker pull amazon/aws-cli`.
+
+Container uses two volumes:
+
+- `$HOME/.aws` -> `/root/.aws` - credentials and config store
+- `$(cwd)` -> `/aws` - Docker image workdir
+
 ### Extra commands
 
 `awscliv2` contains a few commands to make your life easier, especially in CI or any non-TTY environment.
@@ -79,6 +87,12 @@ Also, you can check [example.sh](https://github.com/vemel/awscliv2/blob/master/e
 - `awsv2 --configure <profile_name> <aws_access_key_id> <aws_secret_access_key> [<aws_session_token>]` - set profile in `~/.aws/credentials`
 - `awsv2 --assume-role <profile_name> <source_profile> <role_arn>` - create a new profile with assume role credentials
 - `awsv2 -V/--version` - Output `awscliv2` and `AWS CLI v2` versions
+
+## How to help
+
+- Ping AWS team to release an official PyPI package
+- Help me to test MacOS installer and add Windows installer
+- Share your experience in issues
 
 ## Versioning
 
