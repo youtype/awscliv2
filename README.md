@@ -1,11 +1,11 @@
-# AWS CLI v2
+# AWS CLI v2 for Python 
 
 [![PyPI - awscliv2](https://img.shields.io/pypi/v/awscliv2.svg?color=blue&label=awscliv2)](https://pypi.org/project/awscliv2)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/awscliv2.svg?color=blue)](https://pypi.org/project/awscliv2)
 
 Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html).
 
-- [AWS CLI v2](#aws-cli-v2)
+- [AWS CLI v2 for Python](#aws-cli-v2-for-python)
   - [Before you start](#before-you-start)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -15,14 +15,13 @@ Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/lates
 
 ## Before you start
 
-- This is not an official AWS CLI application
+- This is not an official AWS CLI v2 application, [rant there](https://github.com/aws/aws-cli/issues/4947)
 - Check the source code of this app, as you are working with sensitive data
-- By default this app uses docker image`amazon/aws-cli`, but I recommend to run `awsv2 --install` to install binaries
-- Cross-check the source code of this app once again
+- By default this app uses [amazon/aws-cli](https://hub.docker.com/r/amazon/aws-cli) Docker image
+- To use [binaries for your OS](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html), run `awsv2 --install`
+- Cross-check the source code again, probably I am stealing your data
 
 ## Installation
-
-Install [Docker](https://docs.docker.com/get-docker/).
 
 ```bash
 python -m pip install awscliv2
@@ -44,7 +43,7 @@ Container uses two volumes:
 Install `AWS CLI v2`:
 
 ```bash
-# do not worry if this fails, you can still use awsv2
+# do not worry if this fails, you can still use awsv2 if you have docker installed
 awsv2 --install
 ```
 
