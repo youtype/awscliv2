@@ -6,7 +6,7 @@ import sys
 from configparser import ConfigParser
 from io import StringIO
 from pathlib import Path
-from typing import Optional, Sequence, TextIO, List
+from typing import List, Optional, Sequence, TextIO
 
 from awscliv2.cli_parser import parse_args
 from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
