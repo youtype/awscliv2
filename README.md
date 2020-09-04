@@ -19,7 +19,7 @@ Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/lates
 - Check the source code of this app, as you are working with sensitive data
 - By default this app uses [amazon/aws-cli](https://hub.docker.com/r/amazon/aws-cli) Docker image
 - To use [binaries for your OS](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html), run `awsv2 --install`
-- Cross-check the source code again, probably I am stealing your data
+- Cross-check the source code again, probably I am stealing your credentials
 
 ## Installation
 
