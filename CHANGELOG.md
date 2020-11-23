@@ -7,6 +7,12 @@ and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/)
 
 # [Released]
 
+## [1.5.1] - 2020-11-23
+
+### Fixed
+
+- MacOS `--install` command sometimes tried to remove everything from `$HOME`
+
 ## [1.5.0] - 2020-09-04
 
 ### Added
