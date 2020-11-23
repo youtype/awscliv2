@@ -7,6 +7,10 @@ and this project adheres to [PEP 440](https://www.python.org/dev/peps/pep-0440/)
 
 # [Released]
 
+## [1.5.2] - 2020-11-23
+
+CI fixes
+
 ## [1.5.0] - 2020-09-04
 
 ### Added
