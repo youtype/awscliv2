@@ -31,16 +31,15 @@ def install_macos() -> None:
     """
     logger = get_logger()
     logger.info("Installing AWS CLI v2 for MacOS")
-    install_path = Path.home()
-    output_install_path = install_path / "aws-cli"
-    if output_install_path.exists():
-        logger.info(f"Removing {output_install_path}")
-        shutil.rmtree(output_install_path)
+    install_path = Path.home() / "aws-cli"
+    if install_path.exists():
+        logger.info(f"Removing {install_path}")
+        shutil.rmtree(install_path)
 
     with NamedTemporaryFile("w+", suffix=".pkg") as f_obj:
         package_path = Path(f_obj.name)
         download_file(MACOS_URL, package_path)
-        logger.info(f"Installing {package_path} to {output_install_path}")
+        logger.info(f"Installing {package_path} to {install_path}")
         InteractiveProcess(
             [
                 "installer",
