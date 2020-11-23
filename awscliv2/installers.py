@@ -33,9 +33,9 @@ def install_macos() -> None:
     logger.info("Installing AWS CLI v2 for MacOS")
     install_path = Path.home()
     output_install_path = install_path / "aws-cli"
-    if install_path.exists():
-        logger.info(f"Removing {install_path}")
-        shutil.rmtree(install_path)
+    if output_install_path.exists():
+        logger.info(f"Removing {output_install_path}")
+        shutil.rmtree(output_install_path)
 
     with NamedTemporaryFile("w+", suffix=".pkg") as f_obj:
         package_path = Path(f_obj.name)
@@ -127,4 +127,4 @@ def install_multiplatform():
     if os_platform == "Linux" and arch == "arm":
         return install_linux_arm()
 
-    raise InstallError(f"Platform {os_platform} {arch} is not supported yet, use docker version")
+    raise InstallError(f"{os_platform} {arch} is not supported, use docker version")
