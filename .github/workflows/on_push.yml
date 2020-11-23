@@ -37,4 +37,4 @@ jobs:
           flake8 awscliv2
           black --check awscliv2
           isort -c awscliv2 -v --sp ./pyproject.toml
-          pyright awscliv2
+          npx pyright awscliv2
