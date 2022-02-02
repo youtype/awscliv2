@@ -6,6 +6,7 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/awscliv2.svg?color=blue)](https://pypi.org/project/awscliv2)
 
 Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html).
+Comes with zero dependencies, updates `awscli`, gives access to all services!
 
 Full Awscliv2 project documentation can be found in [Modules](MODULES.md#awscliv2-modules)
 

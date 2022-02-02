@@ -27,6 +27,9 @@ class AWSCLIRunner:
 
     @staticmethod
     def get_awscli_v2_cmd() -> List[str]:
+        """
+        Get command to run AWS CLI v2.
+        """
         local_paths = [
             Path.home() / ".awscliv2" / "binaries" / "aws",
             Path.home() / "aws-cli" / "aws",
@@ -82,6 +85,9 @@ class AWSCLIRunner:
         return self.run_awscli_v2(["--version"])
 
     def run_assume_role(self, profile_name: str, source_profile: str, role_arn: str) -> None:
+        """
+        Add assume role to credentials.
+        """
         aws_path = Path.home() / ".aws"
         if not aws_path.exists():
             aws_path.mkdir(parents=True, exist_ok=True)

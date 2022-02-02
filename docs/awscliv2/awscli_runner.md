@@ -35,9 +35,11 @@ Supports installed and dockerized AWS CLI v2.
 def get_awscli_v2_cmd() -> List[str]:
 ```
 
+Get command to run AWS CLI v2.
+
 ### AWSCLIRunner().print_version
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L75)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L78)
 
 ```python
 def print_version() -> int:
@@ -51,7 +53,7 @@ Process exit code.
 
 ### AWSCLIRunner().run_assume_role
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L84)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L87)
 
 ```python
 def run_assume_role(
@@ -61,9 +63,11 @@ def run_assume_role(
 ) -> None:
 ```
 
+Add assume role to credentials.
+
 ### AWSCLIRunner().run_awscli_v2
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L62)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L65)
 
 ```python
 def run_awscli_v2(args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
@@ -73,7 +77,7 @@ Run AWS CLI.
 
 ### AWSCLIRunner().run_subprocess
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L50)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L53)
 
 ```python
 def run_subprocess(cmd: Sequence[str], stdout: TextIO = sys.stdout) -> int:
@@ -83,7 +87,7 @@ Run interactive subprocess.
 
 ### AWSCLIRunner().set_credentials
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L118)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L124)
 
 ```python
 def set_credentials(

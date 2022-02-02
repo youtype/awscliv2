@@ -39,7 +39,7 @@ def install_macos() -> None:
     with NamedTemporaryFile("w+", suffix=".pkg") as f_obj:
         package_path = Path(f_obj.name)
         download_file(MACOS_URL, package_path)
-        logger.info(f"Installing {package_path} to {install_path}")
+        logger.info(f"Installing {package_path.as_posix()} to {install_path.as_posix()}")
         InteractiveProcess(
             [
                 "installer",
@@ -86,14 +86,14 @@ def install_linux(url: str) -> None:
         with NamedTemporaryFile("w+", suffix=".zip") as f_obj:
             package_path = Path(f_obj.name)
             download_file(url, package_path)
-            logger.info(f"Extracting {package_path} to to {temp_dir_path.as_posix()}")
+            logger.info(f"Extracting {package_path.as_posix()} to to {temp_dir_path.as_posix()}")
             with ZipFile(package_path, "r") as zip_obj:
                 zip_obj.extractall(temp_dir_path.as_posix())
 
         installer_path = temp_dir_path / "aws" / "install"
         os.chmod(installer_path, 0o744)
         os.chmod(temp_dir_path / "aws" / "dist" / "aws", 0o744)
-        logger.info(f"Installing {installer_path} to {install_path}")
+        logger.info(f"Installing {installer_path.as_posix()} to {install_path.as_posix()}")
         output = StringIO()
         return_code = InteractiveProcess(
             [
