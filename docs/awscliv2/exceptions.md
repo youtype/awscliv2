@@ -23,7 +23,7 @@ Main error for awscliv2.
 
 ## ExecutableNotFoundError
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L31)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L32)
 
 ```python
 class ExecutableNotFoundError(BaseException):
@@ -33,7 +33,7 @@ Subprocess cannot find an executable error.
 
 ## InstallError
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L19)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L20)
 
 ```python
 class InstallError(AWSCLIError):
@@ -47,7 +47,7 @@ AWS CLi v2 installer error.
 
 ## SubprocessError
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L25)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L26)
 
 ```python
 class SubprocessError(BaseException):

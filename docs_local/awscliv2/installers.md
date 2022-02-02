@@ -64,7 +64,7 @@ Install AWS CLI v2 for MacOS.
 
 ## install_multiplatform
 
-[[find in source code]](blob/main/awscliv2/installers.py#L115)
+[[find in source code]](blob/main/awscliv2/installers.py#L114)
 
 ```python
 def install_multiplatform() -> None:

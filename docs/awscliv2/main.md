@@ -33,7 +33,7 @@ Main program entrypoint.
 
 ## main_cli
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/main.py#L179)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/main.py#L178)
 
 ```python
 def main_cli() -> None:

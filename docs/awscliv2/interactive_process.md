@@ -23,15 +23,22 @@ Wrapper for subrocess.Popen with interactive input support.
 
 ### InteractiveProcess().readall
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L36)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L46)
 
 ```python
 def readall(process: Popen[bytes], stdin: TextIO) -> None:
 ```
 
+Write input from `stdin` stream to `process`.
+
+#### Arguments
+
+- `process` - Popen process
+- `stdin` - Stream to read
+
 ### InteractiveProcess().run
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L52)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L70)
 
 ```python
 def run(
@@ -47,3 +54,10 @@ def run(
 ```python
 def writeall(process: Popen[bytes], stdout: TextIO) -> None:
 ```
+
+Read output from `process` to `stdout` stream.
+
+#### Arguments
+
+- `process` - Popen process
+- `stdout` - Stream to write
