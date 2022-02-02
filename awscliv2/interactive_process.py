@@ -24,7 +24,8 @@ class InteractiveProcess:
         self.command = list(command)
         self.finished = True
 
-    def writeall(self, process: Popen, stdout: TextIO) -> None:
+    def writeall(self, process: Popen[bytes], stdout: TextIO) -> None:
+        assert process.stdout
         while True:
             output_data = process.stdout.read(1)
             if not output_data:
@@ -32,7 +33,8 @@ class InteractiveProcess:
             stdout.write(output_data.decode("utf-8"))
             stdout.flush()
 
-    def readall(self, process: Popen, stdin: TextIO) -> None:
+    def readall(self, process: Popen[bytes], stdin: TextIO) -> None:
+        assert process.stdin
         while True:
             if self.finished:
                 break

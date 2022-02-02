@@ -1,26 +1,111 @@
-[build-system]
-requires = [
-    "setuptools",
-    "wheel",
-]
-build-backend = "setuptools.build_meta"
-
 [tool.black]
 line-length = 100
-include = '(awscliv2|tests)/.*\.pyi?$'
+include = "(awscliv2|tests)/.*\\.pyi?$"
 target-version = [
-    'py36',
-    'py37',
-    'py38',
+    "py37",
+    "py38",
+    "py39",
+    "py310",
 ]
 
 [tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
+profile = "black"
 line_length = 100
 known_first_party = [
     "awscliv2",
+    "tests",
 ]
 src_paths = []
+
+[tool.poetry]
+name = "awscliv2"
+version = "1.5.2"
+description = "Wrapper for AWS CLI v2"
+authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://vemel.github.io/awscliv2/"
+repository = "https://github.com/vemel/awscliv2"
+documentation = "https://vemel.github.io/awscliv2/"
+keywords = ["awscli", "awscliv2", "wrapper"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Typing :: Typed",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [
+    { include = "awscliv2" },
+]
+include = [
+    "LICENSE",
+    "awscliv2/py.typed",
+]
+
+[tool.poetry.scripts]
+awscliv2 = 'awscliv2.main:main_cli'
+awsv2 = 'awscliv2.main:main_cli'
+
+[tool.poetry.urls]
+"Documentation" = "https://awscliv2.readthedocs.io/en/latest/"
+"Source" = "https://github.com/vemel/awscliv2"
+"Bug Tracker" = "https://github.com/vemel/awscliv2/issues"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pip = "*"
+
+[tool.poetry.dev-dependencies]
+black = "22.1.0"
+isort = "5.10.1"
+flake8 = "4.0.1"
+rope = "*"
+mypy = "0.931"
+twine = "*"
+handsdown = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.report]
+exclude_lines = [
+    "if self.debug:",
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@overload",
+]
+ignore_errors = true
+omit = [
+    "tests/*",
+]
+
+[tool.pyright]
+include = [
+    "awscliv2",
+]
+exclude = [
+    "**/__pycache__",
+    "tests",
+    "typestubs",
+]
+reportMissingImports = true
+reportMissingTypeStubs = true
+reportMissingTypeArgument = "error"
+reportIncompatibleMethodOverride = "error"
+reportIncompatibleVariableOverride = "error"
+reportUnknownParameterType = "error"

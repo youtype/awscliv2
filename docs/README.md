@@ -1,9 +1,13 @@
 # AWS CLI v2 for Python 
 
+> Auto-generated documentation index.
+
 [![PyPI - awscliv2](https://img.shields.io/pypi/v/awscliv2.svg?color=blue&label=awscliv2)](https://pypi.org/project/awscliv2)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/awscliv2.svg?color=blue)](https://pypi.org/project/awscliv2)
 
 Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html).
+
+Full Awscliv2 project documentation can be found in [Modules](MODULES.md#awscliv2-modules)
 
 - [AWS CLI v2 for Python](#aws-cli-v2-for-python)
   - [Before you start](#before-you-start)
@@ -15,6 +19,7 @@ Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/lates
   - [How to help](#how-to-help)
   - [Versioning](#versioning)
   - [Latest changes](#latest-changes)
+  - [Awscliv2 Modules](MODULES.md#awscliv2-modules)
 
 ## Before you start
 

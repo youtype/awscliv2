@@ -105,7 +105,7 @@ def set_credentials(
     aws_access_key_id: str,
     aws_secret_access_key: str,
     aws_session_token: Optional[str] = None,
-):
+) -> None:
     """
     Add or update credentials in `~/.aws/credentials`
     """

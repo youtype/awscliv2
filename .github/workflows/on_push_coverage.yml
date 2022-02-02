@@ -1,41 +1,33 @@
-name: Code style and test
+name: Send coverage report
 
 on:
-  push: {}
+  push:
+    branches:
+      - main
+    paths:
+      - awscliv2/**
+      - tests/**
   workflow_dispatch: {}
 
 jobs:
-  unit-tests:
-    name: Code style & unit tests
+  coverage:
+    name: Coverage
     runs-on: ubuntu-latest
     env:
       PIP_NO_CACHE_DIR: false
       PIP_USER: 1
       PYTHONUSERBASE: ${{ github.workspace }}/.cache/py-user-base
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version:
-          - "3.7"
-          - "3.8"
-          - "3.9"
-          - "3.10"
     steps:
       - name: Add PYTHONUSERBASE to PATH
         id: add-pythonuserbase
         run: |
           echo '${{ env.PYTHONUSERBASE }}/bin/' >> $GITHUB_PATH
       - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         id: python
         uses: actions/setup-python@v2
         with:
-          python-version: "${{ matrix.python-version }}"
-      - name: Set up Node.js
-        id: node
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
+          python-version: "3.10"
       - name: Cache packages
         uses: actions/cache@v2
         with:
@@ -48,19 +40,9 @@ jobs:
           python -m pip install -U poetry pip wheel
           poetry config virtualenvs.create false
           poetry install -n
-          sudo npm install -g pyright
-      - name: Code style
+      - name: Send coverage report
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: |
-          python -m black --check awscliv2
-          python -m isort -c awscliv2
-      - name: Lint
-        run: |
-          python -m flake8 awscliv2
-          python -m pylint awscliv2
-      - name: Typing
-        run: |
-          python -m mypy awscliv2
-          npx pyright
-      - name: Test
-        run: |
-          python -m pytest
+          python -m pytest --cov-report term --cov awscliv2
+          python -m codecov

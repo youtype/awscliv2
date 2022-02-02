@@ -69,7 +69,7 @@ def install_linux_arm() -> None:
     install_linux(LINUX_ARM_URL)
 
 
-def install_linux(url) -> None:
+def install_linux(url: str) -> None:
     """
     Install AWS CLI v2 for Linux from `url`.
     """
@@ -112,7 +112,7 @@ def install_linux(url) -> None:
     logger.info("Running now to check installation: awsv2 --version")
 
 
-def install_multiplatform():
+def install_multiplatform() -> None:
     """
     Install AWS CLI v2 for Linux ar MacOS.
     """
