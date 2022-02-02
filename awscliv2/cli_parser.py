@@ -4,7 +4,22 @@ Parse CLI arguments.
 import argparse
 from typing import Sequence
 
-from awscliv2.constants import PROG_NAME
+import pkg_resources
+
+from awscliv2.constants import PACKAGE_NAME, PROG_NAME
+
+
+def get_version() -> str:
+    """
+    Get awscliv2 package version.
+
+    Returns:
+        Version as a string.
+    """
+    try:
+        return pkg_resources.get_distribution(PACKAGE_NAME).version
+    except pkg_resources.DistributionNotFound:
+        return "0.0.0"
 
 
 def parse_args(args: Sequence[str]) -> argparse.Namespace:

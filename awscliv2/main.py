@@ -8,7 +8,7 @@ from io import StringIO
 from pathlib import Path
 from typing import List, Optional, Sequence, TextIO
 
-from awscliv2.cli_parser import parse_args
+from awscliv2.cli_parser import get_version, parse_args
 from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
 from awscliv2.installers import install_multiplatform
@@ -149,8 +149,7 @@ def main(args: Sequence[str]) -> None:
         sys.exit(run_awscli_v2(["--version"]))
 
     if namespace.version:
-        version_path = Path(__file__).parent / "version.txt"
-        version = version_path.read_text().strip() if version_path.exists() else "0.0.0"
+        version = get_version()
         print(version)
         cmd = " ".join(get_awscli_v2_cmd())
         print(f"AWS CLI v2 command: {cmd}")
