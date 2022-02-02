@@ -1,7 +1,6 @@
 """
 Main entrypoint for CLI.
 """
-import shlex
 import sys
 from typing import Sequence
 
@@ -27,7 +26,7 @@ def main(args: Sequence[str]) -> None:
     if namespace.version:
         version = get_version()
         print(version)
-        cmd = shlex.join(runner.get_awscli_v2_cmd())
+        cmd = " ".join(runner.get_awscli_v2_cmd())
         print(f"AWS CLI v2 command: {cmd}")
         runner.print_version()
         sys.exit(0)

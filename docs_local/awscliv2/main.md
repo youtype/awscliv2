@@ -10,7 +10,7 @@ Main entrypoint for CLI.
 
 ## main
 
-[[find in source code]](blob/main/awscliv2/main.py#L15)
+[[find in source code]](blob/main/awscliv2/main.py#L14)
 
 ```python
 def main(args: Sequence[str]) -> None:
@@ -20,7 +20,7 @@ Main program entrypoint.
 
 ## main_cli
 
-[[find in source code]](blob/main/awscliv2/main.py#L55)
+[[find in source code]](blob/main/awscliv2/main.py#L54)
 
 ```python
 def main_cli() -> None:
