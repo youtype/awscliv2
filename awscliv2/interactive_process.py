@@ -25,8 +25,18 @@ class InteractiveProcess:
         self.finished = True
 
     def writeall(self, process: Popen[bytes], stdout: TextIO) -> None:
+        """
+        Read output from `process` to `stdout` stream.
+
+        Arguments:
+            process -- Popen process
+            stdout -- Stream to write
+        """
         assert process.stdout
         while True:
+            if self.finished:
+                break
+
             output_data = process.stdout.read(1)
             if not output_data:
                 break
@@ -34,6 +44,13 @@ class InteractiveProcess:
             stdout.flush()
 
     def readall(self, process: Popen[bytes], stdin: TextIO) -> None:
+        """
+        Write input from `stdin` stream to `process`.
+
+        Arguments:
+            process -- Popen process
+            stdin -- Stream to read
+        """
         assert process.stdin
         while True:
             if self.finished:
@@ -49,6 +66,7 @@ class InteractiveProcess:
             process.stdin.write(input_data.encode())
             process.stdin.flush()
 
+    # pylint: disable=consider-using-with
     def run(self, stdin: TextIO = default_stdin, stdout: TextIO = default_stdout) -> int:
         self.finished = False
         try:
@@ -58,8 +76,8 @@ class InteractiveProcess:
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
             )
-        except FileNotFoundError:
-            raise ExecutableNotFoundError(self.command[0])
+        except FileNotFoundError as e:
+            raise ExecutableNotFoundError(self.command[0]) from e
 
         writer = threading.Thread(target=self.writeall, args=(process, stdout))
         reader = threading.Thread(target=self.readall, args=(process, stdin))
@@ -67,8 +85,8 @@ class InteractiveProcess:
         writer.start()
         try:
             process.wait()
-        except KeyboardInterrupt:
-            raise SubprocessError("Keyboard interrupt")
+        except KeyboardInterrupt as e:
+            raise SubprocessError("Keyboard interrupt") from e
         finally:
             self.finished = True
             reader.join()

@@ -1,6 +1,10 @@
+"""
+Constants in use accross the project.
+"""
 IMAGE_NAME = "amazon/aws-cli"
 DOCKER_PATH = "docker"
 PROG_NAME = "awscliv2"
+LOGGER_NAME = "awscliv2"
 
 LINUX_X86_64_URL = "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
 LINUX_ARM_URL = "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip"

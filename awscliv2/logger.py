@@ -1,8 +1,22 @@
+"""
+Logging utils
+"""
 import logging
+
+from awscliv2.constants import LOGGER_NAME
 
 
 def get_logger(level: int = logging.DEBUG) -> logging.Logger:
-    logger = logging.getLogger("awscliv2")
+    """
+    Get default logger.
+
+    Arguments:
+        level -- Python log level
+
+    Returns:
+        New or existing logger instance.
+    """
+    logger = logging.getLogger(LOGGER_NAME)
     if logger.handlers:
         return logger
 

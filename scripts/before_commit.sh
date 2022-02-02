@@ -6,10 +6,10 @@ cd $ROOT_PATH
 
 python -m black awscliv2
 python -m isort awscliv2
+python -m pylint awscliv2
 python -m flake8 awscliv2
-# python -m pytest --cov-report term --cov=awscliv2
+python -m pytest --cov-report term --cov=awscliv2
 python -m mypy awscliv2
 npx pyright
-# python -m pylint awscliv2
 
 ./scripts/update_docs.sh

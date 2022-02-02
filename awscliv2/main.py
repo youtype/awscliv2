@@ -24,7 +24,7 @@ def run_subprocess(cmd: Sequence[str], stdout: TextIO = sys.stdout) -> int:
     try:
         return_code = process.run(stdout=stdout)
     except SubprocessError as e:
-        raise AWSCLIError(str(e))
+        raise AWSCLIError(str(e)) from e
 
     return return_code
 
@@ -61,8 +61,8 @@ def run_awscli_v2(args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
     ]
     try:
         return run_subprocess(cmd, stdout=stdout)
-    except ExecutableNotFoundError:
-        raise AWSCLIError(f"Executable not found: {cmd[0]}")
+    except ExecutableNotFoundError as e:
+        raise AWSCLIError(f"Executable not found: {cmd[0]}") from e
 
 
 def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> None:
@@ -160,7 +160,7 @@ def main(args: Sequence[str]) -> None:
         try:
             return run_assume_role(*namespace.assume_role[:3])
         except TypeError:
-            raise AWSCLIError("Use --assume-role <name> <source_profile> <role_arn>")
+            raise AWSCLIError("Use --assume-role <name> <source_profile> <role_arn>") from None
 
     if namespace.configure:
         try:
@@ -168,7 +168,7 @@ def main(args: Sequence[str]) -> None:
         except TypeError:
             raise AWSCLIError(
                 "Use --configure <profile_name> <access_key> <secret_key> [<session_token>]"
-            )
+            ) from None
 
     if not namespace.other:
         raise AWSCLIError("No command provided")

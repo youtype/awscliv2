@@ -75,39 +75,38 @@ def install_linux(url: str) -> None:
     """
     logger = get_logger()
     logger.info("Installing AWS CLI v2 for Linux")
-    temp_dir = Path(TemporaryDirectory().name)
-    install_path = Path.home() / ".awscliv2"
-    if install_path.exists():
-        logger.info(f"Removing {install_path}")
-        shutil.rmtree(install_path)
+    with TemporaryDirectory() as temp_dir:
+        temp_dir_path = Path(temp_dir)
+        install_path = Path.home() / ".awscliv2"
+        if install_path.exists():
+            logger.info(f"Removing {install_path}")
+            shutil.rmtree(install_path)
 
-    bin_path = install_path / "binaries"
-    with NamedTemporaryFile("w+", suffix=".zip") as f_obj:
-        package_path = Path(f_obj.name)
-        download_file(url, package_path)
-        logger.info(f"Extracting {package_path} to to {temp_dir}")
-        with ZipFile(package_path, "r") as zip_obj:
-            zip_obj.extractall(
-                temp_dir,
-            )
+        bin_path = install_path / "binaries"
+        with NamedTemporaryFile("w+", suffix=".zip") as f_obj:
+            package_path = Path(f_obj.name)
+            download_file(url, package_path)
+            logger.info(f"Extracting {package_path} to to {temp_dir_path.as_posix()}")
+            with ZipFile(package_path, "r") as zip_obj:
+                zip_obj.extractall(temp_dir_path.as_posix())
 
-    installer_path = temp_dir / "aws" / "install"
-    os.chmod(installer_path, 0o744)
-    os.chmod(temp_dir / "aws" / "dist" / "aws", 0o744)
-    logger.info(f"Installing {installer_path} to {install_path}")
-    output = StringIO()
-    return_code = InteractiveProcess(
-        [
-            installer_path.as_posix(),
-            "-i",
-            install_path.as_posix(),
-            "-b",
-            bin_path.as_posix(),
-        ]
-    ).run(stdout=output)
-    if return_code:
-        raise InstallError(f"Installation failed: {output.getvalue()}")
-    shutil.rmtree(temp_dir)
+        installer_path = temp_dir_path / "aws" / "install"
+        os.chmod(installer_path, 0o744)
+        os.chmod(temp_dir_path / "aws" / "dist" / "aws", 0o744)
+        logger.info(f"Installing {installer_path} to {install_path}")
+        output = StringIO()
+        return_code = InteractiveProcess(
+            [
+                installer_path.as_posix(),
+                "-i",
+                install_path.as_posix(),
+                "-b",
+                bin_path.as_posix(),
+            ]
+        ).run(stdout=output)
+        if return_code:
+            raise InstallError(f"Installation failed: {output.getvalue()}")
+
     logger.info("Now awsv2 will use this installed version")
     logger.info("Running now to check installation: awsv2 --version")
 

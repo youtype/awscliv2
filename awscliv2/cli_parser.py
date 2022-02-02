@@ -1,3 +1,6 @@
+"""
+Parse CLI arguments.
+"""
 import argparse
 from typing import Sequence
 

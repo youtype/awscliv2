@@ -9,6 +9,7 @@ class AWSCLIError(BaseException):
     """
 
     def __init__(self, msg: str = "", returncode: int = 1) -> None:
+        super().__init__()
         self.msg = msg
         self.returncode = returncode
 
