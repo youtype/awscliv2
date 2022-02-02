@@ -79,7 +79,7 @@ def install_linux(url: str) -> None:
         temp_dir_path = Path(temp_dir)
         install_path = Path.home() / ".awscliv2"
         if install_path.exists():
-            logger.info(f"Removing {install_path}")
+            logger.info(f"Removing {install_path.as_posix()}")
             shutil.rmtree(install_path)
 
         bin_path = install_path / "binaries"

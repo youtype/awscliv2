@@ -7,6 +7,7 @@ Full list of [Awscliv2](README.md#aws-cli-v2-for-python-) project modules.
 - [AWS CLI v2 for Python ](README.md#aws-cli-v2-for-python-)
 - [Awscliv2](awscliv2/index.md#awscliv2)
     - [Module](awscliv2/module.md#module)
+    - [AWSCLIRunner](awscliv2/awscli_runner.md#awsclirunner)
     - [Cli Parser](awscliv2/cli_parser.md#cli-parser)
     - [Constants](awscliv2/constants.md#constants)
     - [Exceptions](awscliv2/exceptions.md#exceptions)

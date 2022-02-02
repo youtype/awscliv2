@@ -5,6 +5,7 @@
 - [Awscliv2](../README.md#aws-cli-v2-for-python-) / [Modules](../MODULES.md#awscliv2-modules) / Awscliv2
     - Modules
         - [Module](module.md#module)
+        - [AWSCLIRunner](awscli_runner.md#awsclirunner)
         - [Cli Parser](cli_parser.md#cli-parser)
         - [Constants](constants.md#constants)
         - [Exceptions](exceptions.md#exceptions)

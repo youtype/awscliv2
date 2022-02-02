@@ -21,9 +21,10 @@ class InteractiveProcess:
     default_stdout: TextIO = sys.stdout
     default_stdin: TextIO = sys.stdin
 
-    def __init__(self, command: Sequence[str]) -> None:
+    def __init__(self, command: Sequence[str], encoding: str = ENCODING) -> None:
         self.command = list(command)
         self.finished = True
+        self.encoding = encoding
 
     # pylint: disable=unsubscriptable-object
     def writeall(self, process: Popen[bytes], stdout: TextIO) -> None:
@@ -42,7 +43,7 @@ class InteractiveProcess:
             output_data = process.stdout.read(1)
             if not output_data:
                 break
-            stdout.write(output_data.decode(ENCODING))
+            stdout.write(output_data.decode(self.encoding))
             stdout.flush()
 
     # pylint: disable=unsubscriptable-object

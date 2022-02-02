@@ -6,7 +6,7 @@ from typing import Sequence
 
 import pkg_resources
 
-from awscliv2.constants import PACKAGE_NAME, PROG_NAME
+from awscliv2.constants import ENCODING, PACKAGE_NAME, PROG_NAME
 
 
 def get_version() -> str:
@@ -22,7 +22,31 @@ def get_version() -> str:
         return "0.0.0"
 
 
-def parse_args(args: Sequence[str]) -> argparse.Namespace:
+class CLINamespace:
+    """
+    Main CLI Namespace.
+    """
+
+    def __init__(
+        self,
+        configure: Sequence[str],
+        assume_role: Sequence[str],
+        encoding: str,
+        install: bool,
+        update: bool,
+        version: bool,
+        other: Sequence[str],
+    ) -> None:
+        self.configure = configure
+        self.assume_role = assume_role
+        self.encoding = encoding
+        self.install = install
+        self.update = update
+        self.version = version
+        self.other = other
+
+
+def parse_args(args: Sequence[str]) -> CLINamespace:
     """
     Parse CLI arguments.
     """
@@ -40,6 +64,15 @@ def parse_args(args: Sequence[str]) -> argparse.Namespace:
         "-U", "--update", action="store_true", help="Install AWS CLI v2 (deprecated)"
     )
     parser.add_argument("-i", "--install", action="store_true", help="Install AWS CLI v2")
+    parser.add_argument("--encoding", help="File and stream encoding", default=ENCODING)
     namespace, other = parser.parse_known_args(args)
     namespace.other = other
-    return namespace
+    return CLINamespace(
+        configure=namespace.configure,
+        assume_role=namespace.assume_role,
+        encoding=namespace.encoding,
+        install=namespace.install,
+        update=namespace.update,
+        version=namespace.version,
+        other=namespace.other,
+    )
