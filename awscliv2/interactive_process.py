@@ -8,6 +8,7 @@ import threading
 from subprocess import Popen
 from typing import Sequence, TextIO
 
+from awscliv2.constants import ENCODING
 from awscliv2.exceptions import ExecutableNotFoundError, SubprocessError
 
 
@@ -24,6 +25,7 @@ class InteractiveProcess:
         self.command = list(command)
         self.finished = True
 
+    # pylint: disable=unsubscriptable-object
     def writeall(self, process: Popen[bytes], stdout: TextIO) -> None:
         """
         Read output from `process` to `stdout` stream.
@@ -40,9 +42,10 @@ class InteractiveProcess:
             output_data = process.stdout.read(1)
             if not output_data:
                 break
-            stdout.write(output_data.decode("utf-8"))
+            stdout.write(output_data.decode(ENCODING))
             stdout.flush()
 
+    # pylint: disable=unsubscriptable-object
     def readall(self, process: Popen[bytes], stdin: TextIO) -> None:
         """
         Write input from `stdin` stream to `process`.

@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import List, Optional, Sequence, TextIO
 
 from awscliv2.cli_parser import get_version, parse_args
-from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
+from awscliv2.constants import DOCKER_PATH, ENCODING, IMAGE_NAME
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
 from awscliv2.installers import install_multiplatform
 from awscliv2.interactive_process import InteractiveProcess
@@ -71,7 +71,7 @@ def run_assume_role(profile_name: str, source_profile: str, role_arn: str) -> No
         aws_path.mkdir(parents=True, exist_ok=True)
     credentials_path = aws_path / "credentials"
     if not credentials_path.exists():
-        credentials_path.write_text("")
+        credentials_path.write_text("", encoding=ENCODING)
 
     stdout = StringIO()
     return_code = run_awscli_v2(
@@ -114,7 +114,7 @@ def set_credentials(
         aws_path.mkdir(parents=True, exist_ok=True)
     credentials_path = aws_path / "credentials"
     if not credentials_path.exists():
-        credentials_path.write_text("")
+        credentials_path.write_text("", encoding=ENCODING)
 
     config = ConfigParser()
     config.read(credentials_path)
@@ -129,7 +129,7 @@ def set_credentials(
 
     output = StringIO()
     config.write(output)
-    credentials_path.write_text(output.getvalue())
+    credentials_path.write_text(output.getvalue(), encoding=ENCODING)
     get_logger().info(f"Successfully added {profile_name} profile to {credentials_path.as_posix()}")
 
 
