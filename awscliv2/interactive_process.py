@@ -26,8 +26,7 @@ class InteractiveProcess:
         self.finished = True
         self.encoding = encoding
 
-    # pylint: disable=unsubscriptable-object
-    def writeall(self, process: Popen[bytes], stdout: TextIO) -> None:
+    def writeall(self, process: Popen, stdout: TextIO) -> None:  # type: ignore
         """
         Read output from `process` to `stdout` stream.
 
@@ -46,8 +45,7 @@ class InteractiveProcess:
             stdout.write(output_data.decode(self.encoding))
             stdout.flush()
 
-    # pylint: disable=unsubscriptable-object
-    def readall(self, process: Popen[bytes], stdin: TextIO) -> None:
+    def readall(self, process: Popen, stdin: TextIO) -> None:  # type: ignore
         """
         Write input from `stdin` stream to `process`.
 

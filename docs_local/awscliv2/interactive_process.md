@@ -27,10 +27,10 @@ Wrapper for subrocess.Popen with interactive input support.
 
 ### InteractiveProcess().readall
 
-[[find in source code]](blob/main/awscliv2/interactive_process.py#L50)
+[[find in source code]](blob/main/awscliv2/interactive_process.py#L48)
 
 ```python
-def readall(process: Popen[bytes], stdin: TextIO) -> None:
+def readall(process: Popen, stdin: ignore) -> None:
 ```
 
 Write input from `stdin` stream to `process`.
@@ -42,7 +42,7 @@ Write input from `stdin` stream to `process`.
 
 ### InteractiveProcess().run
 
-[[find in source code]](blob/main/awscliv2/interactive_process.py#L74)
+[[find in source code]](blob/main/awscliv2/interactive_process.py#L72)
 
 ```python
 def run(
@@ -53,10 +53,10 @@ def run(
 
 ### InteractiveProcess().writeall
 
-[[find in source code]](blob/main/awscliv2/interactive_process.py#L30)
+[[find in source code]](blob/main/awscliv2/interactive_process.py#L29)
 
 ```python
-def writeall(process: Popen[bytes], stdout: TextIO) -> None:
+def writeall(process: Popen, stdout: ignore) -> None:
 ```
 
 Read output from `process` to `stdout` stream.
