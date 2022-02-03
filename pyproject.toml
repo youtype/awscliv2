@@ -19,7 +19,7 @@ src_paths = []
 
 [tool.poetry]
 name = "awscliv2"
-version = "2.0.1"
+version = "2.0.2"
 description = "Wrapper for AWS CLI v2"
 authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
 license = "MIT"
