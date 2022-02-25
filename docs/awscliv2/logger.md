@@ -9,7 +9,7 @@ Logging utils
 
 ## get_logger
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/logger.py#L9)
+[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/logger.py#L12)
 
 ```python
 def get_logger(level: int = logging.DEBUG) -> logging.Logger:

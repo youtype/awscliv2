@@ -35,6 +35,7 @@ class InteractiveProcess:
             stdout -- Stream to write
         """
         assert process.stdout
+        output = ""
         while True:
             if self.finished:
                 break
@@ -42,7 +43,11 @@ class InteractiveProcess:
             output_data = process.stdout.read(1)
             if not output_data:
                 break
-            stdout.write(output_data.decode(self.encoding))
+            output_data_dec = output_data.decode(self.encoding)
+            if output.endswith("\n") and not output_data_dec.strip():
+                continue
+            output = f"{output[-10:]}{output_data_dec}"
+            stdout.write(output_data_dec)
             stdout.flush()
 
     def readall(self, process: Popen, stdin: TextIO) -> None:  # type: ignore

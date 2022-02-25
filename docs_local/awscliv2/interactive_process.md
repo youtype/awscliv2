@@ -27,7 +27,7 @@ Wrapper for subrocess.Popen with interactive input support.
 
 ### InteractiveProcess().readall
 
-[[find in source code]](blob/main/awscliv2/interactive_process.py#L48)
+[[find in source code]](blob/main/awscliv2/interactive_process.py#L53)
 
 ```python
 def readall(process: Popen, stdin: ignore) -> None:
@@ -42,7 +42,7 @@ Write input from `stdin` stream to `process`.
 
 ### InteractiveProcess().run
 
-[[find in source code]](blob/main/awscliv2/interactive_process.py#L72)
+[[find in source code]](blob/main/awscliv2/interactive_process.py#L77)
 
 ```python
 def run(
