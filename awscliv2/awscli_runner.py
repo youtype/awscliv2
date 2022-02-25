@@ -8,6 +8,8 @@ from io import StringIO
 from pathlib import Path
 from typing import List, Optional, Sequence, TextIO
 
+import executor  # type: ignore
+
 from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
 from awscliv2.interactive_process import InteractiveProcess
@@ -50,10 +52,7 @@ class AWSCLIRunner:
             IMAGE_NAME,
         ]
 
-    def run_subprocess(self, cmd: Sequence[str], stdout: TextIO = sys.stdout) -> int:
-        """
-        Run interactive subprocess.
-        """
+    def _run_subprocess(self, cmd: Sequence[str], stdout: TextIO = sys.stdout) -> int:
         process = InteractiveProcess(cmd, encoding=self.encoding)
         try:
             return_code = process.run(stdout=stdout)
@@ -61,6 +60,15 @@ class AWSCLIRunner:
             raise AWSCLIError(str(e)) from e
 
         return return_code
+
+    def _run_detached_subprocess(self, cmd: Sequence[str]) -> int:
+        try:
+            process = executor.execute(*cmd, encoding=self.encoding)
+        except executor.ExternalCommandFailed as e:
+            self.logger.error(f"Command failed with code {e.returncode}")
+            return e.returncode
+
+        return process.returncode
 
     def run_awscli_v2(self, args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
         """
@@ -71,7 +79,20 @@ class AWSCLIRunner:
             *args,
         ]
         try:
-            return self.run_subprocess(cmd, stdout=stdout)
+            return self._run_subprocess(cmd, stdout=stdout)
+        except ExecutableNotFoundError as e:
+            raise AWSCLIError(f"Executable not found: {cmd[0]}") from e
+
+    def run_awscli_v2_detached(self, args: Sequence[str]) -> int:
+        """
+        Run AWS CLI as a detached subprocess.
+        """
+        cmd = [
+            *self.get_awscli_v2_cmd(),
+            *args,
+        ]
+        try:
+            return self._run_detached_subprocess(cmd)
         except ExecutableNotFoundError as e:
             raise AWSCLIError(f"Executable not found: {cmd[0]}") from e
 

@@ -66,6 +66,7 @@ awsv2 = 'awscliv2.main:main_cli'
 [tool.poetry.dependencies]
 python = "^3.7"
 pip = "*"
+executor = "*"
 importlib-resources = "*"
 
 [tool.poetry.dev-dependencies]

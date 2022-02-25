@@ -10,12 +10,12 @@ Runner for all AWS CLI v2 commands.
         - [AWSCLIRunner().print_version](#awsclirunnerprint_version)
         - [AWSCLIRunner().run_assume_role](#awsclirunnerrun_assume_role)
         - [AWSCLIRunner().run_awscli_v2](#awsclirunnerrun_awscli_v2)
-        - [AWSCLIRunner().run_subprocess](#awsclirunnerrun_subprocess)
+        - [AWSCLIRunner().run_awscli_v2_detached](#awsclirunnerrun_awscli_v2_detached)
         - [AWSCLIRunner().set_credentials](#awsclirunnerset_credentials)
 
 ## AWSCLIRunner
 
-[[find in source code]](blob/main/awscliv2/awscli_runner.py#L17)
+[[find in source code]](blob/main/awscliv2/awscli_runner.py#L19)
 
 ```python
 class AWSCLIRunner():
@@ -28,7 +28,7 @@ Supports installed and dockerized AWS CLI v2.
 
 ### AWSCLIRunner.get_awscli_v2_cmd
 
-[[find in source code]](blob/main/awscliv2/awscli_runner.py#L28)
+[[find in source code]](blob/main/awscliv2/awscli_runner.py#L30)
 
 ```python
 @staticmethod
@@ -39,7 +39,7 @@ Get command to run AWS CLI v2.
 
 ### AWSCLIRunner().print_version
 
-[[find in source code]](blob/main/awscliv2/awscli_runner.py#L78)
+[[find in source code]](blob/main/awscliv2/awscli_runner.py#L99)
 
 ```python
 def print_version() -> int:
@@ -53,7 +53,7 @@ Process exit code.
 
 ### AWSCLIRunner().run_assume_role
 
-[[find in source code]](blob/main/awscliv2/awscli_runner.py#L87)
+[[find in source code]](blob/main/awscliv2/awscli_runner.py#L108)
 
 ```python
 def run_assume_role(
@@ -67,7 +67,7 @@ Add assume role to credentials.
 
 ### AWSCLIRunner().run_awscli_v2
 
-[[find in source code]](blob/main/awscliv2/awscli_runner.py#L65)
+[[find in source code]](blob/main/awscliv2/awscli_runner.py#L73)
 
 ```python
 def run_awscli_v2(args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
@@ -75,19 +75,19 @@ def run_awscli_v2(args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
 
 Run AWS CLI.
 
-### AWSCLIRunner().run_subprocess
+### AWSCLIRunner().run_awscli_v2_detached
 
-[[find in source code]](blob/main/awscliv2/awscli_runner.py#L53)
+[[find in source code]](blob/main/awscliv2/awscli_runner.py#L86)
 
 ```python
-def run_subprocess(cmd: Sequence[str], stdout: TextIO = sys.stdout) -> int:
+def run_awscli_v2_detached(args: Sequence[str]) -> int:
 ```
 
-Run interactive subprocess.
+Run AWS CLI as a detached subprocess.
 
 ### AWSCLIRunner().set_credentials
 
-[[find in source code]](blob/main/awscliv2/awscli_runner.py#L124)
+[[find in source code]](blob/main/awscliv2/awscli_runner.py#L145)
 
 ```python
 def set_credentials(

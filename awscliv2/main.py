@@ -48,7 +48,7 @@ def main(args: Sequence[str]) -> None:
     if not namespace.other:
         raise AWSCLIError("No command provided")
 
-    sys.exit(runner.run_awscli_v2(namespace.other))
+    sys.exit(runner.run_awscli_v2_detached(namespace.other))
 
 
 def main_cli() -> None:
