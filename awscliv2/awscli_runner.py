@@ -63,12 +63,12 @@ class AWSCLIRunner:
 
     def _run_detached_subprocess(self, cmd: Sequence[str]) -> int:
         try:
-            process = executor.execute(*cmd, encoding=self.encoding)
+            executor.execute(*cmd, encoding=self.encoding)
         except executor.ExternalCommandFailed as e:
             self.logger.error(f"Command failed with code {e.returncode}")
             return e.returncode
 
-        return process.returncode
+        return 0
 
     def run_awscli_v2(self, args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
         """
