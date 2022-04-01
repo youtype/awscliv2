@@ -73,7 +73,7 @@ awsv2 s3 ls
 python -m awscliv2 s3 ls
 ```
 
-Also, you can check [scripts/example.sh](https://github.com/vemel/awscliv2/blob/main/scripts/example.sh)
+Also, you can check [scripts/example.sh](https://github.com/youtype/awscliv2/blob/main/scripts/example.sh)
 
 ### Docker fallback
 
@@ -114,4 +114,4 @@ Container uses two volumes:
 ## Latest changes
 
 Full changelog can be found in [Changelog](./CHANGELOG.md).
-Release notes can be found in [Releases](https://github.com/vemel/awscliv2/releases).
+Release notes can be found in [Releases](https://github.com/youtype/awscliv2/releases).

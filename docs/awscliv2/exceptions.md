@@ -1,6 +1,6 @@
 # Exceptions
 
-> Auto-generated documentation for [awscliv2.exceptions](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py) module.
+> Auto-generated documentation for [awscliv2.exceptions](https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py) module.
 
 All exceptions for programmatical usage.
 
@@ -12,7 +12,7 @@ All exceptions for programmatical usage.
 
 ## AWSCLIError
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L6)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py#L6)
 
 ```python
 class AWSCLIError(BaseException):
@@ -23,7 +23,7 @@ Main error for awscliv2.
 
 ## ExecutableNotFoundError
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L32)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py#L32)
 
 ```python
 class ExecutableNotFoundError(BaseException):
@@ -33,7 +33,7 @@ Subprocess cannot find an executable error.
 
 ## InstallError
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L20)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py#L20)
 
 ```python
 class InstallError(AWSCLIError):
@@ -47,7 +47,7 @@ AWS CLi v2 installer error.
 
 ## SubprocessError
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/exceptions.py#L26)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py#L26)
 
 ```python
 class SubprocessError(BaseException):

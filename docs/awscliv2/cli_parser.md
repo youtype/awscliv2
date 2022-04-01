@@ -1,6 +1,6 @@
 # Cli Parser
 
-> Auto-generated documentation for [awscliv2.cli_parser](https://github.com/vemel/awscliv2/blob/main/awscliv2/cli_parser.py) module.
+> Auto-generated documentation for [awscliv2.cli_parser](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py) module.
 
 Parse CLI arguments.
 
@@ -11,7 +11,7 @@ Parse CLI arguments.
 
 ## CLINamespace
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/cli_parser.py#L25)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L25)
 
 ```python
 class CLINamespace():
@@ -30,7 +30,7 @@ Main CLI Namespace.
 
 ## get_version
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/cli_parser.py#L12)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L12)
 
 ```python
 def get_version() -> str:
@@ -44,7 +44,7 @@ Version as a string.
 
 ## parse_args
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/cli_parser.py#L49)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L49)
 
 ```python
 def parse_args(args: Sequence[str]) -> CLINamespace:

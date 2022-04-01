@@ -1,6 +1,6 @@
 # InteractiveProcess
 
-> Auto-generated documentation for [awscliv2.interactive_process](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py) module.
+> Auto-generated documentation for [awscliv2.interactive_process](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py) module.
 
 Wrapper for subrocess.Popen with interactive input support.
 
@@ -12,7 +12,7 @@ Wrapper for subrocess.Popen with interactive input support.
 
 ## InteractiveProcess
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L15)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L15)
 
 ```python
 class InteractiveProcess():
@@ -27,7 +27,7 @@ Wrapper for subrocess.Popen with interactive input support.
 
 ### InteractiveProcess().readall
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L53)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L53)
 
 ```python
 def readall(process: Popen, stdin: ignore) -> None:
@@ -42,7 +42,7 @@ Write input from `stdin` stream to `process`.
 
 ### InteractiveProcess().run
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L77)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L77)
 
 ```python
 def run(
@@ -53,7 +53,7 @@ def run(
 
 ### InteractiveProcess().writeall
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/interactive_process.py#L29)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L29)
 
 ```python
 def writeall(process: Popen, stdout: ignore) -> None:

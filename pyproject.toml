@@ -24,9 +24,9 @@ description = "Wrapper for AWS CLI v2"
 authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://vemel.github.io/awscliv2/"
-repository = "https://github.com/vemel/awscliv2"
-documentation = "https://vemel.github.io/awscliv2/"
+homepage = "https://youtype.github.io/awscliv2/"
+repository = "https://github.com/youtype/awscliv2"
+documentation = "https://youtype.github.io/awscliv2/"
 keywords = ["awscli", "awscliv2", "wrapper"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -60,8 +60,8 @@ awsv2 = 'awscliv2.main:main_cli'
 
 [tool.poetry.urls]
 "Documentation" = "https://awscliv2.readthedocs.io/en/latest/"
-"Source" = "https://github.com/vemel/awscliv2"
-"Bug Tracker" = "https://github.com/vemel/awscliv2/issues"
+"Source" = "https://github.com/youtype/awscliv2"
+"Bug Tracker" = "https://github.com/youtype/awscliv2/issues"
 
 [tool.poetry.dependencies]
 python = "^3.7"

@@ -1,6 +1,6 @@
 # Installers
 
-> Auto-generated documentation for [awscliv2.installers](https://github.com/vemel/awscliv2/blob/main/awscliv2/installers.py) module.
+> Auto-generated documentation for [awscliv2.installers](https://github.com/youtype/awscliv2/blob/main/awscliv2/installers.py) module.
 
 AWS CLI v2 installers.
 
@@ -14,7 +14,7 @@ AWS CLI v2 installers.
 
 ## download_file
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/installers.py#L19)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/installers.py#L19)
 
 ```python
 def download_file(url: str, target: Path) -> None:
@@ -24,7 +24,7 @@ Download file from `url` to `target` path.
 
 ## install_linux
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/installers.py#L72)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/installers.py#L72)
 
 ```python
 def install_linux(url: str) -> None:
@@ -34,7 +34,7 @@ Install AWS CLI v2 for Linux from `url`.
 
 ## install_linux_arm
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/installers.py#L65)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/installers.py#L65)
 
 ```python
 def install_linux_arm() -> None:
@@ -44,7 +44,7 @@ Install AWS CLI v2 for Linux ARM.
 
 ## install_linux_x86_64
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/installers.py#L58)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/installers.py#L58)
 
 ```python
 def install_linux_x86_64() -> None:
@@ -54,7 +54,7 @@ Install AWS CLI v2 for Linux x86_64.
 
 ## install_macos
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/installers.py#L28)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/installers.py#L28)
 
 ```python
 def install_macos() -> None:
@@ -64,7 +64,7 @@ Install AWS CLI v2 for MacOS.
 
 ## install_multiplatform
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/installers.py#L114)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/installers.py#L114)
 
 ```python
 def install_multiplatform() -> None:

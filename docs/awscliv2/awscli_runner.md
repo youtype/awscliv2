@@ -1,6 +1,6 @@
 # AWSCLIRunner
 
-> Auto-generated documentation for [awscliv2.awscli_runner](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py) module.
+> Auto-generated documentation for [awscliv2.awscli_runner](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py) module.
 
 Runner for all AWS CLI v2 commands.
 
@@ -15,7 +15,7 @@ Runner for all AWS CLI v2 commands.
 
 ## AWSCLIRunner
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L19)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py#L19)
 
 ```python
 class AWSCLIRunner():
@@ -28,7 +28,7 @@ Supports installed and dockerized AWS CLI v2.
 
 ### AWSCLIRunner.get_awscli_v2_cmd
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L30)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py#L30)
 
 ```python
 @staticmethod
@@ -39,7 +39,7 @@ Get command to run AWS CLI v2.
 
 ### AWSCLIRunner().print_version
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L99)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py#L99)
 
 ```python
 def print_version() -> int:
@@ -53,7 +53,7 @@ Process exit code.
 
 ### AWSCLIRunner().run_assume_role
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L108)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py#L108)
 
 ```python
 def run_assume_role(
@@ -67,7 +67,7 @@ Add assume role to credentials.
 
 ### AWSCLIRunner().run_awscli_v2
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L73)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py#L73)
 
 ```python
 def run_awscli_v2(args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
@@ -77,7 +77,7 @@ Run AWS CLI.
 
 ### AWSCLIRunner().run_awscli_v2_detached
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L86)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py#L86)
 
 ```python
 def run_awscli_v2_detached(args: Sequence[str]) -> int:
@@ -87,7 +87,7 @@ Run AWS CLI as a detached subprocess.
 
 ### AWSCLIRunner().set_credentials
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/awscli_runner.py#L145)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/awscli_runner.py#L145)
 
 ```python
 def set_credentials(

@@ -1,6 +1,6 @@
 # Main
 
-> Auto-generated documentation for [awscliv2.main](https://github.com/vemel/awscliv2/blob/main/awscliv2/main.py) module.
+> Auto-generated documentation for [awscliv2.main](https://github.com/youtype/awscliv2/blob/main/awscliv2/main.py) module.
 
 Main entrypoint for CLI.
 
@@ -10,7 +10,7 @@ Main entrypoint for CLI.
 
 ## main
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/main.py#L14)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/main.py#L14)
 
 ```python
 def main(args: Sequence[str]) -> None:
@@ -20,7 +20,7 @@ Main program entrypoint.
 
 ## main_cli
 
-[[find in source code]](https://github.com/vemel/awscliv2/blob/main/awscliv2/main.py#L54)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/main.py#L54)
 
 ```python
 def main_cli() -> None:
