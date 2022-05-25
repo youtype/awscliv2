@@ -10,21 +10,26 @@ from typing import List, Optional, Sequence, TextIO
 
 import executor  # type: ignore
 
-from awscliv2.constants import DOCKER_PATH, IMAGE_NAME
+from awscliv2.constants import DOCKER_PATH, ENCODING, IMAGE_NAME
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
 from awscliv2.interactive_process import InteractiveProcess
 from awscliv2.logger import get_logger
 
 
-class AWSCLIRunner:
+class AWSAPI:
     """
-    Runner for all AWS CLI v2 commands.
+    API for all AWS CLI v2 commands.
 
     Supports installed and dockerized AWS CLI v2.
+
+    Arguments:
+        encoding -- Input/output encoding, default utf-8.
+        output -- Output stream, default sys.stdout.
     """
 
-    def __init__(self, encoding: str) -> None:
+    def __init__(self, encoding: str = ENCODING, output: Optional[TextIO] = None) -> None:
         self.encoding = encoding
+        self.output = output
         self.logger = get_logger()
 
     @staticmethod
@@ -52,10 +57,10 @@ class AWSCLIRunner:
             IMAGE_NAME,
         ]
 
-    def _run_subprocess(self, cmd: Sequence[str], stdout: TextIO = sys.stdout) -> int:
+    def _run_subprocess(self, cmd: Sequence[str]) -> int:
         process = InteractiveProcess(cmd, encoding=self.encoding)
         try:
-            return_code = process.run(stdout=stdout)
+            return_code = process.run(stdout=self.output or sys.stdout)
         except SubprocessError as e:
             raise AWSCLIError(str(e)) from e
 
@@ -70,22 +75,43 @@ class AWSCLIRunner:
 
         return 0
 
-    def run_awscli_v2(self, args: Sequence[str], stdout: TextIO = sys.stdout) -> int:
+    def execute(self, args: Sequence[str]) -> str:
+        """
+        Execute AWS CLI v2 command.
+
+        Returns:
+            Command output.
+        """
+        old_output = self.output
+        self.output = StringIO()
+        self.run_awscli_v2(args)
+        self.output.seek(0)
+        result = self.output.read()
+        self.output = old_output
+        return result
+
+    def run_awscli_v2(self, args: Sequence[str]) -> int:
         """
         Run AWS CLI.
+
+        Returns:
+            Process exit code.
         """
         cmd = [
             *self.get_awscli_v2_cmd(),
             *args,
         ]
         try:
-            return self._run_subprocess(cmd, stdout=stdout)
+            return self._run_subprocess(cmd)
         except ExecutableNotFoundError as e:
             raise AWSCLIError(f"Executable not found: {cmd[0]}") from e
 
     def run_awscli_v2_detached(self, args: Sequence[str]) -> int:
         """
         Run AWS CLI as a detached subprocess.
+
+        Returns:
+            Process exit code.
         """
         cmd = [
             *self.get_awscli_v2_cmd(),
@@ -105,7 +131,7 @@ class AWSCLIRunner:
         """
         return self.run_awscli_v2(["--version"])
 
-    def run_assume_role(self, profile_name: str, source_profile: str, role_arn: str) -> None:
+    def assume_role(self, profile_name: str, source_profile: str, role_arn: str) -> None:
         """
         Add assume role to credentials.
         """
@@ -128,7 +154,6 @@ class AWSCLIRunner:
                 "--role-session-name",
                 f"{profile_name}-{source_profile}",
             ],
-            stdout=stdout,
         )
         if return_code:
             raise AWSCLIError(stdout.getvalue().strip())
@@ -147,7 +172,8 @@ class AWSCLIRunner:
         profile_name: str,
         aws_access_key_id: str,
         aws_secret_access_key: str,
-        aws_session_token: Optional[str] = None,
+        aws_session_token: str = "",
+        region: str = "",
     ) -> None:
         """
         Add or update credentials in `~/.aws/credentials`
@@ -167,6 +193,8 @@ class AWSCLIRunner:
         }
         if aws_session_token:
             credentials["aws_session_token"] = aws_session_token
+        if region:
+            credentials["region"] = region
 
         config[profile_name] = credentials
 

@@ -1,17 +1,24 @@
-# AWS CLI v2 for Python 
+# AWS CLI v2 for Python
 
 [![PyPI - awscliv2](https://img.shields.io/pypi/v/awscliv2.svg?color=blue&label=awscliv2)](https://pypi.org/project/awscliv2)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/awscliv2.svg?color=blue)](https://pypi.org/project/awscliv2)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/awscliv2?color=blue)](https://pypistats.org/packages/awscliv2)
 
 Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html).
-Comes with zero dependencies, updates `awscli`, gives access to all services!
+
+- No dependency hell, like with original [awscli](https://pypi.org/project/awscli/)
+- Can install and update `awscliv2` binaries
+- Provides access to all services
+- Has Python interface
 
 - [AWS CLI v2 for Python](#aws-cli-v2-for-python)
   - [Before you start](#before-you-start)
   - [Installation](#installation)
   - [Usage](#usage)
+    - [From command line](#from-command-line)
     - [Docker fallback](#docker-fallback)
     - [Extra commands](#extra-commands)
+    - [As a Python module](#as-a-python-module)
   - [Development](#development)
   - [How to help](#how-to-help)
   - [Versioning](#versioning)
@@ -38,6 +45,8 @@ alias aws='awsv2'
 ```
 
 ## Usage
+
+### From command line
 
 Install `AWS CLI v2`:
 
@@ -90,6 +99,43 @@ Container uses two volumes:
 - `awsv2 --assume-role <profile_name> <source_profile> <role_arn>` - create a new profile with assume role credentials
 - `awsv2 -V/--version` - Output `awscliv2` and `AWS CLI v2` versions
 
+### As a Python module
+
+Basic usage
+
+```python
+from awscliv2.api import AWSAPI
+from awscliv2.exceptions import AWSCLIError
+
+aws_api = AWSAPI()
+
+try:
+    output = aws_api.execute(["s3", "ls"])
+except AWSCLIError as e:
+    print(f"Something went wrong: {e}")
+else:
+    print(output)
+```
+
+Install binaries for your OS from Python
+
+```python
+from awscliv2.installers import install_multiplatform
+
+install_multiplatform()
+```
+
+You can also set credentials or assume roles
+
+```python
+from awscliv2.api import AWSAPI
+
+aws_api = AWSAPI()
+
+aws_api.set_credentials("profile_name", "access_key", "secret_key")
+aws_api.assume_role("name", "source_profile", "role_arn")
+```
+
 ## Development
 
 - Install [poetry](https://python-poetry.org/)
@@ -99,7 +145,6 @@ Container uses two volumes:
 ## How to help
 
 - Ping AWS team to release an official PyPI package
-- Help me to test MacOS installer and add Windows installer
 - Share your experience in issues
 
 ## Versioning
@@ -108,5 +153,4 @@ Container uses two volumes:
 
 ## Latest changes
 
-Full changelog can be found in [Changelog](./CHANGELOG.md).
-Release notes can be found in [Releases](https://github.com/youtype/awscliv2/releases).
+Full changelog can be found in [Releases](https://github.com/youtype/awscliv2/releases).

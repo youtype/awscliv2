@@ -52,11 +52,15 @@ def parse_args(args: Sequence[str]) -> CLINamespace:
     """
     parser = argparse.ArgumentParser(PROG_NAME, description="Can be used as a regular AWS CLI v2")
     parser.add_argument(
-        "--configure", nargs="+", help="Configure profile: <name> <access_key> <secret_key>"
+        "--configure",
+        nargs="+",
+        metavar="STR",
+        help="Configure profile: <name> <access_key> <secret_key> [<session_token>] [<region>]",
     )
     parser.add_argument(
         "--assume-role",
-        nargs="+",
+        nargs=3,
+        metavar="STR",
         help="Configure assume role profile: <name> <source_profile> <role_arn>",
     )
     parser.add_argument("-V", "--version", action="store_true", help="Show version")
