@@ -100,7 +100,7 @@ Container uses two volumes:
 `awscliv2` contains a few commands to make your life easier, especially in CI or any non-TTY environment.
 
 - `awsv2 -U/--update/--install` - Install `AWS CLI v2`
-- `awsv2 --configure <profile_name> <aws_access_key_id> <aws_secret_access_key> [<aws_session_token>]` - set profile in `~/.aws/credentials`
+- `awsv2 --configure <profile_name> <aws_access_key_id> <aws_secret_access_key> [<aws_session_token>] [<region>]` - set profile in `~/.aws/credentials`
 - `awsv2 --assume-role <profile_name> <source_profile> <role_arn>` - create a new profile with assume role credentials
 - `awsv2 -V/--version` - Output `awscliv2` and `AWS CLI v2` versions
 
@@ -137,7 +137,7 @@ from awscliv2.api import AWSAPI
 
 aws_api = AWSAPI()
 
-aws_api.set_credentials("profile_name", "access_key", "secret_key")
+aws_api.set_credentials("profile_name", "access_key", "secret_key", "", "region")
 aws_api.assume_role("name", "source_profile", "role_arn")
 ```
 
