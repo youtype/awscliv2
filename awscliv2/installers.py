@@ -116,13 +116,13 @@ def install_multiplatform() -> None:
     Install AWS CLI v2 for Linux ar MacOS.
     """
     os_platform = platform.system()
-    arch = platform.architecture()[0]
+    arch = platform.machine()
 
     if os_platform == "Darwin":
         return install_macos()
-    if os_platform == "Linux" and arch == "64bit":
+    if os_platform == "Linux" and arch == "x86_64":
         return install_linux_x86_64()
-    if os_platform == "Linux" and arch == "arm":
+    if os_platform == "Linux" and arch == "aarch64":
         return install_linux_arm()
 
     raise InstallError(f"{os_platform} {arch} is not supported, use docker version")
