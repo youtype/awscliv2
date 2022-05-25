@@ -44,8 +44,8 @@ class InteractiveProcess:
             if not output_data:
                 break
             output_data_dec = output_data.decode(self.encoding)
-            if output.endswith("\n") and not output_data_dec.strip():
-                continue
+            # if output.endswith("\n") and not output_data_dec.strip():
+            #     continue
             output = f"{output[-10:]}{output_data_dec}"
             stdout.write(output_data_dec)
             stdout.flush()
