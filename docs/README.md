@@ -8,14 +8,10 @@
 
 Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html).
 
-- No dependency hell, like with original [awscli](https://pypi.org/project/awscli/)
-- Can install and update `awscliv2` binaries
-- Provides access to all services
-- Has Python interface
-
 Full Awscliv2 project documentation can be found in [Modules](MODULES.md#awscliv2-modules)
 
 - [AWS CLI v2 for Python](#aws-cli-v2-for-python)
+  - [Features](#features)
   - [Before you start](#before-you-start)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -28,6 +24,13 @@ Full Awscliv2 project documentation can be found in [Modules](MODULES.md#awscliv
   - [Versioning](#versioning)
   - [Latest changes](#latest-changes)
   - [Awscliv2 Modules](MODULES.md#awscliv2-modules)
+
+## Features
+
+- No dependency hell, like with original [awscli](https://pypi.org/project/awscli/)
+- Can install and update `awscliv2` binaries
+- Provides access to all AWS services
+- Has Python interface `awscliv2.api.AWSAPI`
 
 ## Before you start
 
