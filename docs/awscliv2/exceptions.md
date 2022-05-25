@@ -4,7 +4,7 @@
 
 All exceptions for programmatical usage.
 
-- [Awscliv2](../README.md#aws-cli-v2-for-python-) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Exceptions
+- [Awscliv2](../README.md#aws-cli-v2-for-python) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Exceptions
     - [AWSCLIError](#awsclierror)
     - [ExecutableNotFoundError](#executablenotfounderror)
     - [InstallError](#installerror)

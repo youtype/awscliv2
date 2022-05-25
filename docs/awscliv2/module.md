@@ -4,4 +4,4 @@
 
 Main Python module entrypoint.
 
-- [Awscliv2](../README.md#aws-cli-v2-for-python-) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Module
+- [Awscliv2](../README.md#aws-cli-v2-for-python) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Module

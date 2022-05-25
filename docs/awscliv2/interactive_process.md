@@ -4,7 +4,7 @@
 
 Wrapper for subrocess.Popen with interactive input support.
 
-- [Awscliv2](../README.md#aws-cli-v2-for-python-) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / InteractiveProcess
+- [Awscliv2](../README.md#aws-cli-v2-for-python) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / InteractiveProcess
     - [InteractiveProcess](#interactiveprocess)
         - [InteractiveProcess().readall](#interactiveprocessreadall)
         - [InteractiveProcess().run](#interactiveprocessrun)

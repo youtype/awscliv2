@@ -4,7 +4,7 @@
 
 Parse CLI arguments.
 
-- [Awscliv2](../README.md#aws-cli-v2-for-python-) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Cli Parser
+- [Awscliv2](../README.md#aws-cli-v2-for-python) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Cli Parser
     - [CLINamespace](#clinamespace)
     - [get_version](#get_version)
     - [parse_args](#parse_args)

@@ -4,7 +4,7 @@
 
 AWS CLI v2 installers.
 
-- [Awscliv2](../README.md#aws-cli-v2-for-python-) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Installers
+- [Awscliv2](../README.md#aws-cli-v2-for-python) / [Modules](../MODULES.md#awscliv2-modules) / [Awscliv2](index.md#awscliv2) / Installers
     - [download_file](#download_file)
     - [install_linux](#install_linux)
     - [install_linux_arm](#install_linux_arm)

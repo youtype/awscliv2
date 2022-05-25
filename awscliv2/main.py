@@ -43,7 +43,8 @@ def main(args: Sequence[str]) -> int:
             runner.set_credentials(*namespace.configure[:5])
         except TypeError:
             raise AWSCLIError(
-                "Use --configure <profile_name> <access_key> <secret_key> [<session_token>] [<region>]"
+                "Use --configure <profile_name> <access_key>"
+                " <secret_key> [<session_token>] [<region>]"
             ) from None
         return 0
 
