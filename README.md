@@ -136,8 +136,17 @@ from awscliv2.api import AWSAPI
 
 aws_api = AWSAPI()
 
-aws_api.set_credentials("profile_name", "access_key", "secret_key", "", "region")
-aws_api.assume_role("name", "source_profile", "role_arn")
+aws_api.set_credentials(
+    profile_name="my_profile",
+    aws_access_key_id="access_key",
+    aws_secret_access_key="secret_key",
+    region="us-east-1",
+)
+aws_api.assume_role(
+    profile_name="my_profile",
+    source_profile="source_profile",
+    role_arn="role_arn",
+)
 ```
 
 ## Development
