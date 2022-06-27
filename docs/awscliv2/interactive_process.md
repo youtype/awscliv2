@@ -42,7 +42,7 @@ Write input from `stdin` stream to `process`.
 
 ### InteractiveProcess().run
 
-[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L77)
+[[find in source code]](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L76)
 
 ```python
 def run(

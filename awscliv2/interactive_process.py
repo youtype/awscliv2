@@ -73,7 +73,6 @@ class InteractiveProcess:
             process.stdin.write(input_data.encode())
             process.stdin.flush()
 
-    # pylint: disable=consider-using-with
     def run(self, stdin: TextIO = default_stdin, stdout: TextIO = default_stdout) -> int:
         self.finished = False
         try:

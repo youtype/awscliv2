@@ -47,10 +47,8 @@ jobs:
       - name: Lint
         run: |
           poetry run flake8 awscliv2
-          poetry run pylint awscliv2
       - name: Typing
         run: |
-          poetry run mypy awscliv2
           npx pyright
       - name: Test
         run: |
