@@ -38,7 +38,8 @@ Full Awscliv2 project documentation can be found in [Modules](MODULES.md#awscliv
 - Check the source code of this app, as you are working with sensitive data
 - By default this app uses [amazon/aws-cli](https://hub.docker.com/r/amazon/aws-cli) Docker image
 - To use [binaries for your OS](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html), run `awsv2 --install`
-- Cross-check the source code again, probably I want to steal your credentials
+- Cross-check the source code again, probably I want to
+  [steal your credentials](https://blog.sonatype.com/python-packages-upload-your-aws-keys-env-vars-secrets-to-web)!
 
 ## Installation
 

@@ -1,12 +1,12 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from awscliv2.logger import get_logger
 
 
 class TestLogging(unittest.TestCase):
     @patch("awscliv2.logger.logging")
-    def test_get_logger(self, logging_mock):
+    def test_get_logger(self, logging_mock: MagicMock):
         logging_mock.getLogger().handlers = []
 
         self.assertTrue(get_logger(level=10))
