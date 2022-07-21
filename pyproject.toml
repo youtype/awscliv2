@@ -79,6 +79,7 @@ rope = "*"
 codecov = "*"
 twine = "*"
 handsdown = "*"
+mkdocs = "*"
 types-setuptools = "*"
 
 [build-system]
