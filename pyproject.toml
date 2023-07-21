@@ -82,7 +82,7 @@ flake8-string-format = { version = "*", python = ">=3.10" }
 pytest = "*"
 pytest-cov = "*"
 rope = "*"
-handsdown = "*"
+handsdown = { version = "*", python = ">=3.10" }
 types-setuptools = "*"
 
 [build-system]
