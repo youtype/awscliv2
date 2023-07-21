@@ -30,8 +30,6 @@ jobs:
         run: |
           poetry install -n
       - name: Send coverage report
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          poetry run pytest --cov-report term --cov awscliv2
-          poetry run codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
