@@ -71,18 +71,17 @@ executor = "*"
 importlib-resources = "*"
 
 [tool.poetry.dev-dependencies]
-black = "*"
-isort = "*"
-flake8 = "*"
-flake8-bugbear = "*"
-flake8-comprehensions = "*"
-flake8-docstrings = "*"
-flake8-simplify = "*"
-flake8-string-format = "*"
+isort = { version = "*", python = ">=3.10" }
+black = { version = "*", python = ">=3.10" }
+flake8 = { version = "*", python = ">=3.10" }
+flake8-bugbear = { version = "*", python = ">=3.10" }
+flake8-comprehensions = { version = "*", python = ">=3.10" }
+flake8-docstrings = { version = "*", python = ">=3.10" }
+flake8-simplify = { version = "*", python = ">=3.10" }
+flake8-string-format = { version = "*", python = ">=3.10" }
 pytest = "*"
 pytest-cov = "*"
 rope = "*"
-twine = "*"
 handsdown = "*"
 types-setuptools = "*"
 

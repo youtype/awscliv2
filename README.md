@@ -2,7 +2,7 @@
 
 [![PyPI - awscliv2](https://img.shields.io/pypi/v/awscliv2.svg?color=blue&label=awscliv2)](https://pypi.org/project/awscliv2)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/awscliv2.svg?color=blue)](https://pypi.org/project/awscliv2)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/awscliv2?color=blue)](https://pypistats.org/packages/awscliv2)
+[![PyPI - Downloads](https://static.pepy.tech/badge/awscliv2)](https://pepy.tech/project/awscliv2)
 
 Wrapper for [AWS CLI v2](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html).
 

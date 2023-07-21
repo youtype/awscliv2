@@ -16,6 +16,9 @@ jobs:
           - "3.9"
           - "3.10"
           - "3.11"
+        include:
+          - version: "3.11"
+            check-formatting: "true"
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python for Poetry
@@ -38,10 +41,12 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install -n
+          poetry run pip install flake8
       - name: Install Node.js dependencies
         run: |
           npm install -g pyright
       - name: Code style
+        if: ${{ matrix.check-formatting }}
         run: |
           poetry run black --check awscliv2
           poetry run isort -c awscliv2
@@ -50,7 +55,7 @@ jobs:
           poetry run flake8 awscliv2
       - name: Typing
         run: |
-          npx pyright
+          poetry run npx pyright
       - name: Test
         run: |
           poetry run pytest
