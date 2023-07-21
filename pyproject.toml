@@ -84,7 +84,6 @@ pytest-cov = "*"
 rope = "*"
 twine = "*"
 handsdown = "*"
-mkdocs = "*"
 types-setuptools = "*"
 
 [build-system]

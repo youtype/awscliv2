@@ -2,9 +2,9 @@
 Parse CLI arguments.
 """
 import argparse
+import contextlib
+import importlib.metadata
 from typing import Sequence
-
-import pkg_resources
 
 from awscliv2.constants import ENCODING, PACKAGE_NAME, PROG_NAME
 
@@ -16,10 +16,10 @@ def get_version() -> str:
     Returns:
         Version as a string.
     """
-    try:
-        return pkg_resources.get_distribution(PACKAGE_NAME).version
-    except pkg_resources.DistributionNotFound:
-        return "0.0.0"
+    with contextlib.suppress(importlib.metadata.PackageNotFoundError):
+        return importlib.metadata.version(PACKAGE_NAME)
+
+    return "0.0.0"
 
 
 class CLINamespace:
