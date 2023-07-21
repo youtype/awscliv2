@@ -74,6 +74,20 @@ class InteractiveProcess:
             process.stdin.flush()
 
     def run(self, stdin: TextIO = default_stdin, stdout: TextIO = default_stdout) -> int:
+        """
+        Run interactive process with input from `stdin` and output to `stdout`.
+
+        Args:
+            stdin -- Process stdin text stream
+            stdout -- Process stdout text stream
+
+        Raises:
+            ExecutableNotFoundError: Process executable not found
+            SubprocessError: Process error
+
+        Returns:
+            Process status code
+        """
         self.finished = False
         try:
             process = Popen(

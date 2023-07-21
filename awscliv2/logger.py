@@ -1,5 +1,5 @@
 """
-Logging utils
+Logging utils.
 """
 import logging
 

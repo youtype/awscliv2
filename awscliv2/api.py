@@ -176,7 +176,7 @@ class AWSAPI:
         region: str = "",
     ) -> None:
         """
-        Add or update credentials in `~/.aws/credentials`
+        Add or update credentials in `~/.aws/credentials`.
         """
         aws_path = Path.home() / ".aws"
         if not aws_path.exists():

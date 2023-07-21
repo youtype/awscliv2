@@ -132,7 +132,7 @@ def run_awscli_v2_detached(self, args: Sequence[str]) -> int:
 
 [Show source in api.py:170](https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L170)
 
-Add or update credentials in `~/.aws/credentials`
+Add or update credentials in `~/.aws/credentials`.
 
 #### Signature
 

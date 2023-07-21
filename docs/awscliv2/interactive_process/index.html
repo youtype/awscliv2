@@ -461,6 +461,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#arguments_1" class="md-nav__link">
+    Arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raises" class="md-nav__link">
+    Raises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#signature_2" class="md-nav__link">
     Signature
   </a>
@@ -481,7 +502,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#arguments_1" class="md-nav__link">
+  <a href="#arguments_2" class="md-nav__link">
     Arguments
   </a>
   
@@ -645,6 +666,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#arguments_1" class="md-nav__link">
+    Arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raises" class="md-nav__link">
+    Raises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#signature_2" class="md-nav__link">
     Signature
   </a>
@@ -665,7 +707,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#arguments_1" class="md-nav__link">
+  <a href="#arguments_2" class="md-nav__link">
     Arguments
   </a>
   
@@ -739,6 +781,19 @@ InteractiveProcess</p>
 </code></pre></div>
 <h3 id="interactiveprocessrun">InteractiveProcess().run<a class="headerlink" href="#interactiveprocessrun" title="Permanent link">#</a></h3>
 <p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L76">Show source in interactive_process.py:76</a></p>
+<p>Run interactive process with input from <code>stdin</code> and output to <code>stdout</code>.</p>
+<h4 id="arguments_1">Arguments<a class="headerlink" href="#arguments_1" title="Permanent link">#</a></h4>
+<ul>
+<li><code>stdin</code> - Process stdin text stream</li>
+<li><code>stdout</code> - Process stdout text stream</li>
+</ul>
+<h4 id="raises">Raises<a class="headerlink" href="#raises" title="Permanent link">#</a></h4>
+<ul>
+<li><code>ExecutableNotFoundError</code> - Process executable not found</li>
+<li><code>SubprocessError</code> - Process error</li>
+</ul>
+<h4 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">#</a></h4>
+<p>Process status code</p>
 <h4 id="signature_2">Signature<a class="headerlink" href="#signature_2" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stdin</span><span class="p">:</span> <span class="n">TextIO</span> <span class="o">=</span> <span class="n">default_stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">TextIO</span> <span class="o">=</span> <span class="n">default_stdout</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="o">...</span>
@@ -746,7 +801,7 @@ InteractiveProcess</p>
 <h3 id="interactiveprocesswriteall">InteractiveProcess().writeall<a class="headerlink" href="#interactiveprocesswriteall" title="Permanent link">#</a></h3>
 <p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L29">Show source in interactive_process.py:29</a></p>
 <p>Read output from <code>process</code> to <code>stdout</code> stream.</p>
-<h4 id="arguments_1">Arguments<a class="headerlink" href="#arguments_1" title="Permanent link">#</a></h4>
+<h4 id="arguments_2">Arguments<a class="headerlink" href="#arguments_2" title="Permanent link">#</a></h4>
 <ul>
 <li><code>process</code> - Popen process</li>
 <li><code>stdout</code> - Stream to write</li>

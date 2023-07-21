@@ -46,6 +46,22 @@ def readall(self, process: Popen, stdin: ignore) -> None:
 
 [Show source in interactive_process.py:76](https://github.com/youtype/awscliv2/blob/main/awscliv2/interactive_process.py#L76)
 
+Run interactive process with input from `stdin` and output to `stdout`.
+
+#### Arguments
+
+- `stdin` - Process stdin text stream
+- `stdout` - Process stdout text stream
+
+#### Raises
+
+- `ExecutableNotFoundError` - Process executable not found
+- `SubprocessError` - Process error
+
+#### Returns
+
+Process status code
+
 #### Signature
 
 ```python
