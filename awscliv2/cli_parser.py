@@ -3,10 +3,15 @@ Parse CLI arguments.
 """
 import argparse
 import contextlib
-import importlib.metadata
+import sys
 from typing import Sequence
 
 from awscliv2.constants import ENCODING, PACKAGE_NAME, PROG_NAME
+
+if sys.version_info >= (3, 8):
+    from importlib import metadata
+else:
+    import importlib_metadata as metadata
 
 
 def get_version() -> str:
@@ -16,8 +21,8 @@ def get_version() -> str:
     Returns:
         Version as a string.
     """
-    with contextlib.suppress(importlib.metadata.PackageNotFoundError):
-        return importlib.metadata.version(PACKAGE_NAME)
+    with contextlib.suppress(metadata.PackageNotFoundError):
+        return metadata.version(PACKAGE_NAME)
 
     return "0.0.0"
 

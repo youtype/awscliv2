@@ -8,7 +8,7 @@ Cli Parser
 
 ## CLINamespace
 
-[Show source in cli_parser.py:25](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L25)
+[Show source in cli_parser.py:30](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L30)
 
 Main CLI Namespace.
 
@@ -33,7 +33,7 @@ class CLINamespace:
 
 ## get_version
 
-[Show source in cli_parser.py:12](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L12)
+[Show source in cli_parser.py:17](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L17)
 
 Get awscliv2 package version.
 
@@ -52,7 +52,7 @@ def get_version() -> str:
 
 ## parse_args
 
-[Show source in cli_parser.py:49](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L49)
+[Show source in cli_parser.py:54](https://github.com/youtype/awscliv2/blob/main/awscliv2/cli_parser.py#L54)
 
 Parse CLI arguments.
 
