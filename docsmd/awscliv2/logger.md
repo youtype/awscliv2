@@ -26,6 +26,3 @@ New or existing logger instance.
 def get_logger(level: int = logging.DEBUG) -> logging.Logger:
     ...
 ```
-
-
-

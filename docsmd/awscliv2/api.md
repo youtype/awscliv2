@@ -147,6 +147,3 @@ def set_credentials(
 ) -> None:
     ...
 ```
-
-
-

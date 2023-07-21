@@ -70,6 +70,3 @@ Read output from `process` to `stdout` stream.
 def writeall(self, process: Popen, stdout: ignore) -> None:
     ...
 ```
-
-
-

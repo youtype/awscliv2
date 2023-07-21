@@ -4,10 +4,10 @@ set -e
 ROOT_PATH=$(dirname $(dirname $(realpath $0)))
 cd $ROOT_PATH
 
-python -m black awscliv2
-python -m isort awscliv2
-python -m flake8 awscliv2
-python -m pytest --cov-report term --cov=awscliv2
-npx pyright
+poetry run black awscliv2
+poetry run isort awscliv2
+poetry run flake8 awscliv2
+poetry run pytest --cov-report term --cov=awscliv2
+poetry run npx pyright
 
 ./scripts/update_docs.sh

@@ -33,6 +33,3 @@ Main entrypoint for CLI.
 def main_cli() -> None:
     ...
 ```
-
-
-

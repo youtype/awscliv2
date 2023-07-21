@@ -93,6 +93,3 @@ Install AWS CLI v2 for Linux ar MacOS.
 def install_multiplatform() -> None:
     ...
 ```
-
-
-

@@ -66,6 +66,3 @@ def parse_args(args: Sequence[str]) -> CLINamespace:
 #### See also
 
 - [CLINamespace](#clinamespace)
-
-
-
