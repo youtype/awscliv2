@@ -68,7 +68,7 @@ awsv2 = 'awscliv2.main:main_cli'
 python = "^3.7"
 pip = "*"
 executor = "*"
-importlib-resources = "*"
+importlib-metadata = { version = "*", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
 isort = { version = "*", python = ">=3.10" }
