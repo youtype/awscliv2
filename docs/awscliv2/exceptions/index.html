@@ -690,22 +690,19 @@ Exceptions</p>
 <p>Main error for awscliv2.</p>
 <h4 id="signature">Signature<a class="headerlink" href="#signature" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">AWSCLIError</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">returncode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="o">...</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">returncode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h2 id="executablenotfounderror">ExecutableNotFoundError<a class="headerlink" href="#executablenotfounderror" title="Permanent link">#</a></h2>
 <p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py#L32">Show source in exceptions.py:32</a></p>
 <p>Subprocess cannot find an executable error.</p>
 <h4 id="signature_1">Signature<a class="headerlink" href="#signature_1" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">ExecutableNotFoundError</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">ExecutableNotFoundError</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
 <h2 id="installerror">InstallError<a class="headerlink" href="#installerror" title="Permanent link">#</a></h2>
 <p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py#L20">Show source in exceptions.py:20</a></p>
 <p>AWS CLi v2 installer error.</p>
 <h4 id="signature_2">Signature<a class="headerlink" href="#signature_2" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span> <span class="nc">InstallError</span><span class="p">(</span><span class="n">AWSCLIError</span><span class="p">):</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span> <span class="nc">InstallError</span><span class="p">(</span><span class="n">AWSCLIError</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
 <h4 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">#</a></h4>
 <ul>
@@ -715,8 +712,7 @@ Exceptions</p>
 <p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/exceptions.py#L26">Show source in exceptions.py:26</a></p>
 <p>Subprocess interrupted error.</p>
 <h4 id="signature_3">Signature<a class="headerlink" href="#signature_3" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span> <span class="nc">SubprocessError</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span> <span class="nc">SubprocessError</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
 
 

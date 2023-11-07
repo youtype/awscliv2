@@ -15,8 +15,7 @@ Download file from `url` to `target` path.
 #### Signature
 
 ```python
-def download_file(url: str, target: Path) -> None:
-    ...
+def download_file(url: str, target: Path) -> None: ...
 ```
 
 
@@ -30,8 +29,7 @@ Install AWS CLI v2 for Linux from `url`.
 #### Signature
 
 ```python
-def install_linux(url: str) -> None:
-    ...
+def install_linux(url: str) -> None: ...
 ```
 
 
@@ -45,8 +43,7 @@ Install AWS CLI v2 for Linux ARM.
 #### Signature
 
 ```python
-def install_linux_arm() -> None:
-    ...
+def install_linux_arm() -> None: ...
 ```
 
 
@@ -60,8 +57,7 @@ Install AWS CLI v2 for Linux x86_64.
 #### Signature
 
 ```python
-def install_linux_x86_64() -> None:
-    ...
+def install_linux_x86_64() -> None: ...
 ```
 
 
@@ -75,8 +71,7 @@ Install AWS CLI v2 for MacOS.
 #### Signature
 
 ```python
-def install_macos() -> None:
-    ...
+def install_macos() -> None: ...
 ```
 
 
@@ -90,6 +85,5 @@ Install AWS CLI v2 for Linux ar MacOS.
 #### Signature
 
 ```python
-def install_multiplatform() -> None:
-    ...
+def install_multiplatform() -> None: ...
 ```

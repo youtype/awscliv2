@@ -16,8 +16,7 @@ Wrapper for subrocess.Popen with interactive input support.
 
 ```python
 class InteractiveProcess:
-    def __init__(self, command: Sequence[str], encoding: str = ENCODING) -> None:
-        ...
+    def __init__(self, command: Sequence[str], encoding: str = ENCODING) -> None: ...
 ```
 
 #### See also
@@ -38,8 +37,7 @@ Write input from `stdin` stream to `process`.
 #### Signature
 
 ```python
-def readall(self, process: Popen, stdin: ignore) -> None:
-    ...
+def readall(self, process: Popen, stdin: ignore) -> None: ...
 ```
 
 ### InteractiveProcess().run
@@ -65,8 +63,7 @@ Process status code
 #### Signature
 
 ```python
-def run(self, stdin: TextIO = default_stdin, stdout: TextIO = default_stdout) -> int:
-    ...
+def run(self, stdin: TextIO = default_stdin, stdout: TextIO = default_stdout) -> int: ...
 ```
 
 ### InteractiveProcess().writeall
@@ -83,6 +80,5 @@ Read output from `process` to `stdout` stream.
 #### Signature
 
 ```python
-def writeall(self, process: Popen, stdout: ignore) -> None:
-    ...
+def writeall(self, process: Popen, stdout: ignore) -> None: ...
 ```

@@ -916,7 +916,7 @@ Api</p>
 <p>Auto-generated documentation for <a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py">awscliv2.api</a> module.</p>
 </blockquote>
 <h2 id="awsapi">AWSAPI<a class="headerlink" href="#awsapi" title="Permanent link">#</a></h2>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L19">Show source in api.py:19</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L18">Show source in api.py:18</a></p>
 <p>API for all AWS CLI v2 commands.</p>
 <p>Supports installed and dockerized AWS CLI v2.</p>
 <h4 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">#</a></h4>
@@ -928,66 +928,59 @@ Api</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">AWSAPI</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">ENCODING</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TextIO</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="o">...</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h4 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">#</a></h4>
 <ul>
 <li><a href="../constants/#encoding">ENCODING</a></li>
 </ul>
 <h3 id="awsapiassume_role">AWSAPI().assume_role<a class="headerlink" href="#awsapiassume_role" title="Permanent link">#</a></h3>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L134">Show source in api.py:134</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L135">Show source in api.py:135</a></p>
 <p>Add assume role to credentials.</p>
 <h4 id="signature_1">Signature<a class="headerlink" href="#signature_1" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">assume_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profile_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source_profile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role_arn</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">assume_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profile_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source_profile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role_arn</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h3 id="awsapiexecute">AWSAPI().execute<a class="headerlink" href="#awsapiexecute" title="Permanent link">#</a></h3>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L78">Show source in api.py:78</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L79">Show source in api.py:79</a></p>
 <p>Execute AWS CLI v2 command.</p>
 <h4 id="returns">Returns<a class="headerlink" href="#returns" title="Permanent link">#</a></h4>
 <p>Command output.</p>
 <h4 id="signature_2">Signature<a class="headerlink" href="#signature_2" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h3 id="awsapiget_awscli_v2_cmd">AWSAPI.get_awscli_v2_cmd<a class="headerlink" href="#awsapiget_awscli_v2_cmd" title="Permanent link">#</a></h3>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L35">Show source in api.py:35</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L34">Show source in api.py:34</a></p>
 <p>Get command to run AWS CLI v2.</p>
 <h4 id="signature_3">Signature<a class="headerlink" href="#signature_3" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@staticmethod</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span> <span class="nf">get_awscli_v2_cmd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="o">...</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span> <span class="nf">get_awscli_v2_cmd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 </code></pre></div>
 <h3 id="awsapiprint_version">AWSAPI().print_version<a class="headerlink" href="#awsapiprint_version" title="Permanent link">#</a></h3>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L125">Show source in api.py:125</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L126">Show source in api.py:126</a></p>
 <p>Print AWS CLI v2 version.</p>
 <h4 id="returns_1">Returns<a class="headerlink" href="#returns_1" title="Permanent link">#</a></h4>
 <p>Process exit code.</p>
 <h4 id="signature_4">Signature<a class="headerlink" href="#signature_4" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span> <span class="nf">print_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span> <span class="nf">print_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h3 id="awsapirun_awscli_v2">AWSAPI().run_awscli_v2<a class="headerlink" href="#awsapirun_awscli_v2" title="Permanent link">#</a></h3>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L93">Show source in api.py:93</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L94">Show source in api.py:94</a></p>
 <p>Run AWS CLI.</p>
 <h4 id="returns_2">Returns<a class="headerlink" href="#returns_2" title="Permanent link">#</a></h4>
 <p>Process exit code.</p>
 <h4 id="signature_5">Signature<a class="headerlink" href="#signature_5" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">run_awscli_v2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">run_awscli_v2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h3 id="awsapirun_awscli_v2_detached">AWSAPI().run_awscli_v2_detached<a class="headerlink" href="#awsapirun_awscli_v2_detached" title="Permanent link">#</a></h3>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L109">Show source in api.py:109</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L110">Show source in api.py:110</a></p>
 <p>Run AWS CLI as a detached subprocess.</p>
 <h4 id="returns_3">Returns<a class="headerlink" href="#returns_3" title="Permanent link">#</a></h4>
 <p>Process exit code.</p>
 <h4 id="signature_6">Signature<a class="headerlink" href="#signature_6" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span> <span class="nf">run_awscli_v2_detached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span> <span class="nf">run_awscli_v2_detached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h3 id="awsapiset_credentials">AWSAPI().set_credentials<a class="headerlink" href="#awsapiset_credentials" title="Permanent link">#</a></h3>
-<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L170">Show source in api.py:170</a></p>
+<p><a href="https://github.com/youtype/awscliv2/blob/main/awscliv2/api.py#L171">Show source in api.py:171</a></p>
 <p>Add or update credentials in <code>~/.aws/credentials</code>.</p>
 <h4 id="signature_7">Signature<a class="headerlink" href="#signature_7" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span> <span class="nf">set_credentials</span><span class="p">(</span>
@@ -997,8 +990,7 @@ Api</p>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">aws_secret_access_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">aws_session_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">region</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="o">...</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 
 

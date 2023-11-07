@@ -1,20 +1,12 @@
 [tool.black]
 line-length = 100
 include = "(awscliv2|tests)/.*\\.pyi?$"
-target-version = [
-    "py37",
-    "py38",
-    "py39",
-    "py310",
-]
+target-version = ["py37", "py38", "py39", "py310"]
 
 [tool.isort]
 profile = "black"
 line_length = 100
-known_first_party = [
-    "awscliv2",
-    "tests",
-]
+known_first_party = ["awscliv2", "tests"]
 src_paths = []
 
 [tool.poetry]
@@ -42,18 +34,14 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
     "Typing :: Typed",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-packages = [
-    { include = "awscliv2" },
-]
-include = [
-    "LICENSE",
-    "awscliv2/py.typed",
-]
+packages = [{ include = "awscliv2" }]
+include = ["LICENSE", "awscliv2/py.typed"]
 
 [tool.poetry.scripts]
 awscliv2 = 'awscliv2.main:main_cli'
@@ -67,7 +55,6 @@ awsv2 = 'awscliv2.main:main_cli'
 [tool.poetry.dependencies]
 python = "^3.7"
 pip = "*"
-executor = "*"
 importlib-metadata = { version = "*", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
@@ -99,19 +86,11 @@ exclude_lines = [
     "@overload",
 ]
 ignore_errors = true
-omit = [
-    "tests/*",
-]
+omit = ["tests/*"]
 
 [tool.pyright]
-include = [
-    "awscliv2",
-]
-exclude = [
-    "**/__pycache__",
-    "tests",
-    "typestubs",
-]
+include = ["awscliv2"]
+exclude = ["**/__pycache__", "tests", "typestubs"]
 reportMissingImports = true
 reportMissingTypeStubs = true
 reportMissingTypeArgument = "error"

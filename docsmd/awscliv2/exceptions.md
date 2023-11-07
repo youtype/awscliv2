@@ -16,8 +16,7 @@ Main error for awscliv2.
 
 ```python
 class AWSCLIError(BaseException):
-    def __init__(self, msg: str = "", returncode: int = 1) -> None:
-        ...
+    def __init__(self, msg: str = "", returncode: int = 1) -> None: ...
 ```
 
 
@@ -31,8 +30,7 @@ Subprocess cannot find an executable error.
 #### Signature
 
 ```python
-class ExecutableNotFoundError(BaseException):
-    ...
+class ExecutableNotFoundError(BaseException): ...
 ```
 
 
@@ -46,8 +44,7 @@ AWS CLi v2 installer error.
 #### Signature
 
 ```python
-class InstallError(AWSCLIError):
-    ...
+class InstallError(AWSCLIError): ...
 ```
 
 #### See also
@@ -65,6 +62,5 @@ Subprocess interrupted error.
 #### Signature
 
 ```python
-class SubprocessError(BaseException):
-    ...
+class SubprocessError(BaseException): ...
 ```

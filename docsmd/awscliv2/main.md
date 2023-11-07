@@ -15,8 +15,7 @@ Main program entrypoint.
 #### Signature
 
 ```python
-def main(args: Sequence[str]) -> int:
-    ...
+def main(args: Sequence[str]) -> int: ...
 ```
 
 
@@ -30,6 +29,5 @@ Main entrypoint for CLI.
 #### Signature
 
 ```python
-def main_cli() -> None:
-    ...
+def main_cli() -> None: ...
 ```

@@ -25,8 +25,7 @@ class CLINamespace:
         update: bool,
         version: bool,
         other: Sequence[str],
-    ) -> None:
-        ...
+    ) -> None: ...
 ```
 
 
@@ -44,8 +43,7 @@ Version as a string.
 #### Signature
 
 ```python
-def get_version() -> str:
-    ...
+def get_version() -> str: ...
 ```
 
 
@@ -59,8 +57,7 @@ Parse CLI arguments.
 #### Signature
 
 ```python
-def parse_args(args: Sequence[str]) -> CLINamespace:
-    ...
+def parse_args(args: Sequence[str]) -> CLINamespace: ...
 ```
 
 #### See also

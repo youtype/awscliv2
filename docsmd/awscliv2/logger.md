@@ -23,6 +23,5 @@ New or existing logger instance.
 #### Signature
 
 ```python
-def get_logger(level: int = logging.DEBUG) -> logging.Logger:
-    ...
+def get_logger(level: int = logging.DEBUG) -> logging.Logger: ...
 ```

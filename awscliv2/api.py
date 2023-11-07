@@ -2,13 +2,12 @@
 Runner for all AWS CLI v2 commands.
 """
 import json
+import subprocess
 import sys
 from configparser import ConfigParser
 from io import StringIO
 from pathlib import Path
 from typing import List, Optional, Sequence, TextIO
-
-import executor  # type: ignore
 
 from awscliv2.constants import DOCKER_PATH, ENCODING, IMAGE_NAME
 from awscliv2.exceptions import AWSCLIError, ExecutableNotFoundError, SubprocessError
@@ -67,13 +66,15 @@ class AWSAPI:
         return return_code
 
     def _run_detached_subprocess(self, cmd: Sequence[str]) -> int:
-        try:
-            executor.execute(*cmd, encoding=self.encoding)
-        except executor.ExternalCommandFailed as e:
-            self.logger.error(f"Command failed with code {e.returncode}")
-            return e.returncode
+        p = subprocess.Popen(cmd, encoding=self.encoding)
+        return_code: Optional[int] = None
+        while return_code is None:
+            return_code = p.poll()
 
-        return 0
+        if return_code:
+            raise AWSCLIError(f"Command failed with code {return_code}")
+
+        return return_code
 
     def execute(self, args: Sequence[str]) -> str:
         """
