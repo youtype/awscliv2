@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Install poetry
+        run: pipx install poetry
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -30,11 +32,10 @@ jobs:
               return context.payload.inputs.version
             }
             return context.ref.split('/').pop()
-      - name: Install builder
+      - name: Install dependencies
         run: |
-          python -m pip install -U poetry pip wheel
           poetry install -n
-          poetry run pip install -U twine
+          poetry run pip install -U twine wheel
       - name: Bump version
         env:
           VERSION: ${{ steps.version.outputs.result }}
@@ -43,15 +44,15 @@ jobs:
           poetry version ${VERSION}
           rm -rf *.egg-info || true
           poetry install -n
-      - name: Commit changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ steps.version.outputs.result }}
+      - name: Setup git
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
+      - name: Commit changes
+        env:
+          VERSION: ${{ steps.version.outputs.result }}
+        run: |
           git add pyproject.toml
-          git add setup.cfg
           git commit -m "Release ${VERSION}"
           git push
       - name: Publish to PyPI
@@ -60,4 +61,4 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           poetry build
-          twine upload  --non-interactive dist/*
+          poetry run twine upload  --non-interactive dist/*
