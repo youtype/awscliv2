@@ -9,9 +9,9 @@ from typing import Sequence
 from awscliv2.constants import ENCODING, PACKAGE_NAME, PROG_NAME
 
 if sys.version_info >= (3, 8):
-    from importlib import metadata
+    from importlib import metadata  # type: ignore
 else:
-    import importlib_metadata as metadata
+    import importlib_metadata as metadata  # type: ignore
 
 
 def get_version() -> str:

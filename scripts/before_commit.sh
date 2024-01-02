@@ -9,5 +9,3 @@ poetry run isort .
 poetry run flake8 awscliv2
 poetry run pytest --cov-report term --cov=awscliv2
 poetry run npx pyright
-
-./scripts/update_docs.sh

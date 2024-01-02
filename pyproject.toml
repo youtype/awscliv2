@@ -66,10 +66,10 @@ flake8-comprehensions = { version = "*", python = ">=3.10" }
 flake8-docstrings = { version = "*", python = ">=3.10" }
 flake8-simplify = { version = "*", python = ">=3.10" }
 flake8-string-format = { version = "*", python = ">=3.10" }
-pytest = "*"
-pytest-cov = "*"
-rope = "*"
+rope = { version = "*", python = ">=3.10" }
 handsdown = { version = "*", python = ">=3.10" }
+pytest = { version = "*", python = ">=3.10" }
+pytest-cov = { version = "*", python = ">=3.10" }
 types-setuptools = "*"
 
 [build-system]
@@ -97,3 +97,4 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = "error"
 reportUnknownParameterType = "error"
+pythonVersion = "3.7"
