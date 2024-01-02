@@ -41,6 +41,7 @@ jobs:
       - name: Build html docs
         run: |
           rm -rf docs
+          echo `ls -lh`
           poetry run mkdocs build
       - name: Commit docs
         run: |
