@@ -1,6 +1,7 @@
 """
 Constants in use accross the project.
 """
+
 IMAGE_NAME = "amazon/aws-cli"
 DOCKER_PATH = "docker"
 PACKAGE_NAME = "awscliv2"

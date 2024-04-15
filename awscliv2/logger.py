@@ -1,6 +1,7 @@
 """
 Logging utils.
 """
+
 import logging
 
 from awscliv2.constants import LOGGER_NAME

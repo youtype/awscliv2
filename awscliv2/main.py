@@ -1,6 +1,7 @@
 """
 Main entrypoint for CLI.
 """
+
 import sys
 from typing import Sequence
 

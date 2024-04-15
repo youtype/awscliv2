@@ -1,6 +1,7 @@
 """
 AWS CLI v2 installers.
 """
+
 import os
 import platform
 import shutil

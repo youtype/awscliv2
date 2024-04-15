@@ -1,6 +1,7 @@
 """
 Parse CLI arguments.
 """
+
 import argparse
 import contextlib
 import sys
