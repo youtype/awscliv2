@@ -40,9 +40,16 @@ jobs:
       - name: Lint
         run: |
           poetry run flake8 awscliv2
-      - run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Node.js dependencies
+        run: |
+          npm install -g pyright
       - name: Typing
-        uses: jakebailey/pyright-action@v1
+        run: |
+          poetry run npx pyright awscliv2
       - name: Test
         run: |
           poetry run pytest
