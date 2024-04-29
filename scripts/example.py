@@ -1,3 +1,7 @@
+"""
+Example script.
+"""
+
 import json
 import shlex
 

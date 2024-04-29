@@ -35,21 +35,14 @@ jobs:
       - name: Code style
         if: ${{ matrix.check-formatting }}
         run: |
-          poetry run black --check awscliv2
-          poetry run isort -c awscliv2
+          poetry run ruff format --check
       - name: Lint
+        if: ${{ matrix.check-formatting }}
         run: |
-          poetry run flake8 awscliv2
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-      - name: Install Node.js dependencies
-        run: |
-          npm install -g pyright
+          poetry run ruff check
       - name: Typing
         run: |
-          poetry run npx pyright awscliv2
+          poetry run pyright awscliv2
       - name: Test
         run: |
           poetry run pytest

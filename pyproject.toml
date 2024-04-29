@@ -58,14 +58,8 @@ pip = "*"
 importlib-metadata = { version = "*", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
-isort = { version = "*", python = ">=3.10" }
-black = { version = "*", python = ">=3.10" }
-flake8 = { version = "*", python = ">=3.10" }
-flake8-bugbear = { version = "*", python = ">=3.10" }
-flake8-comprehensions = { version = "*", python = ">=3.10" }
-flake8-docstrings = { version = "*", python = ">=3.10" }
-flake8-simplify = { version = "*", python = ">=3.10" }
-flake8-string-format = { version = "*", python = ">=3.10" }
+ruff = { version = "*", python = ">=3.10" }
+pyright = { version = "*", python = ">=3.10" }
 rope = { version = "*", python = ">=3.10" }
 handsdown = { version = "*", python = ">=3.10" }
 pytest = { version = "*", python = ">=3.10" }
@@ -98,3 +92,49 @@ reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = "error"
 reportUnknownParameterType = "error"
 pythonVersion = "3.7"
+
+[tool.ruff]
+exclude = [
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+    "build",
+    "dist",
+]
+
+line-length = 100
+indent-width = 4
+target-version = "py37"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "I", "N", "D", "C4", "C90", "RUF"]
+ignore = [
+    "E501",
+    "N803",
+    "N818",
+    "D107",
+    "D200",
+    "D203",
+    "D212",
+    "D406",
+    "D407",
+    "D413",
+    "D417",
+]
+fixable = ["ALL"]
+unfixable = ["B"]
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+exclude = ["test_*.py", "*.pyi"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"

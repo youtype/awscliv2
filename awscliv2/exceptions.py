@@ -14,6 +14,9 @@ class AWSCLIError(BaseException):
         self.returncode = returncode
 
     def __str__(self) -> str:
+        """
+        Represent as a string.
+        """
         return self.msg
 
 

@@ -14,7 +14,7 @@ from awscliv2.logger import get_logger
 
 def main(args: Sequence[str]) -> int:
     """
-    Main program entrypoint.
+    Entrypoint for API.
     """
     namespace = parse_args(args)
     runner = AWSAPI(encoding=namespace.encoding, output=sys.stdout)
@@ -58,7 +58,7 @@ def main(args: Sequence[str]) -> int:
 
 def main_cli() -> None:
     """
-    Main entrypoint for CLI.
+    Entrypoint for CLI.
     """
     try:
         sys.exit(main(sys.argv[1:]))
