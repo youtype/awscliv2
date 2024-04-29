@@ -19,6 +19,7 @@ jobs:
         include:
           - version: "3.12"
             check-formatting: "true"
+            check-typing: "true"
     steps:
       - uses: actions/checkout@v4
       - name: Install poetry
@@ -31,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install -n
-          poetry run pip install flake8 pytest
+          poetry run pip install pytest
       - name: Code style
         if: ${{ matrix.check-formatting }}
         run: |
@@ -41,6 +42,7 @@ jobs:
         run: |
           poetry run ruff check
       - name: Typing
+        if: ${{ matrix.check-typing }}
         run: |
           poetry run pyright awscliv2
       - name: Test
