@@ -32,7 +32,6 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install -n
-          poetry run pip install pytest
       - name: Code style
         if: ${{ matrix.check-formatting }}
         run: |
