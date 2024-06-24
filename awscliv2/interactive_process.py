@@ -6,6 +6,8 @@ import select
 import subprocess
 import sys
 import threading
+import socket
+import platform
 from subprocess import Popen
 from typing import Sequence, TextIO
 
@@ -64,7 +66,11 @@ class InteractiveProcess:
             if self.finished:
                 break
 
-            rlist = select.select([stdin], [], [], self.read_timeout)[0]
+            if platform.system() == "Windows":
+                rlist = select.select([socket.socket()], [], [], self.read_timeout)[0]
+            else:
+                rlist = select.select([stdin], [], [], self.read_timeout)[0]
+
             if not rlist:
                 continue
 
