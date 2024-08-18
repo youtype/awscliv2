@@ -62,11 +62,7 @@ ruff = { version = "*", python = ">=3.10" }
 pyright = { version = "*", python = ">=3.10" }
 rope = { version = "*", python = ">=3.10" }
 handsdown = { version = "*", python = ">=3.10" }
-pytest = [
-    { version = "^5.0.0", python = "<3.8" },
-    { version = "^6.0.0", python = ">=3.8,<3.9" },
-    { version = "*", python = ">=3.9" },
-]
+pytest = { version = "*", python = ">=3.10" }
 pytest-cov = { version = "*", python = ">=3.10" }
 types-setuptools = "*"
 

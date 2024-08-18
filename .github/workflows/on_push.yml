@@ -46,4 +46,5 @@ jobs:
           poetry run pyright awscliv2
       - name: Test
         run: |
+          pip install pytest
           poetry run pytest
