@@ -57,7 +57,7 @@ python = "^3.7"
 pip = "*"
 importlib-metadata = { version = "*", python = "<3.8" }
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 ruff = { version = "*", python = ">=3.10" }
 pyright = { version = "*", python = ">=3.10" }
 rope = { version = "*", python = ">=3.10" }

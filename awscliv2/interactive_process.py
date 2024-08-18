@@ -2,17 +2,19 @@
 Wrapper for subrocess.Popen with interactive input support.
 """
 
+import platform
 import select
+import socket
 import subprocess
 import sys
 import threading
-import socket
-import platform
 from subprocess import Popen
-from typing import Sequence, TextIO
+from typing import Sequence, TextIO, Union
 
 from awscliv2.constants import ENCODING
 from awscliv2.exceptions import ExecutableNotFoundError, SubprocessError
+
+TInput = Union[TextIO, socket.socket]
 
 
 class InteractiveProcess:
@@ -22,7 +24,11 @@ class InteractiveProcess:
 
     read_timeout = 0.2
     default_stdout: TextIO = sys.stdout
-    default_stdin: TextIO = sys.stdin
+
+    def _get_default_inputs(self) -> Sequence[TInput]:
+        if platform.system() == "Windows":
+            return [socket.socket()]
+        return [sys.stdin]
 
     def __init__(self, command: Sequence[str], encoding: str = ENCODING) -> None:
         self.command = list(command)
@@ -53,39 +59,65 @@ class InteractiveProcess:
             stdout.write(output_data_dec)
             stdout.flush()
 
-    def readall(self, process: Popen, stdin: TextIO) -> None:  # type: ignore
+    def _propagate_streams(self, process: Popen, inputs: Sequence[TInput]) -> bool:  # type: ignore
+        has_input = False
+        assert process.stdin
+        for stream_input in inputs:
+            if isinstance(stream_input, socket.socket):
+                try:
+                    input_data = stream_input.recv(1024)
+                except OSError:
+                    input_data = b""
+                if input_data:
+                    process.stdin.write(input_data)
+                    try:
+                        process.stdin.flush()
+                    except BrokenPipeError:
+                        continue
+                    has_input = True
+            else:
+                input_data = stream_input.readline()
+                if input_data:
+                    process.stdin.write(input_data.encode())
+                    try:
+                        process.stdin.flush()
+                    except BrokenPipeError:
+                        continue
+                    has_input = True
+        return has_input
+
+    def readall(self, process: Popen, inputs: Sequence[TInput]) -> None:  # type: ignore
         """
         Write input from `stdin` stream to `process`.
 
         Arguments:
             process -- Popen process
-            stdin -- Stream to read
+            inputs -- Streams to read
         """
         assert process.stdin
         while True:
             if self.finished:
                 break
 
-            if platform.system() == "Windows":
-                rlist = select.select([socket.socket()], [], [], self.read_timeout)[0]
-            else:
-                rlist = select.select([stdin], [], [], self.read_timeout)[0]
+            rlist = select.select(inputs, [], [], self.read_timeout)[0]
 
             if not rlist:
                 continue
 
-            input_data = stdin.readline()
-            if not input_data:
+            has_input = self._propagate_streams(process, inputs)
+            if not has_input:
                 break
-            process.stdin.write(input_data.encode())
-            process.stdin.flush()
 
-    def run(self, stdin: TextIO = default_stdin, stdout: TextIO = default_stdout) -> int:
+        for stream_input in inputs:
+            if isinstance(stream_input, socket.socket):
+                stream_input.close()
+
+    def run(self, inputs: Sequence[TInput] = (), stdout: TextIO = default_stdout) -> int:
         """
         Run interactive process with input from `stdin` and output to `stdout`.
 
         Args:
-            stdin -- Process stdin text stream
+            inputs -- Input text streams
             stdout -- Process stdout text stream
 
         Raises:
@@ -106,8 +138,10 @@ class InteractiveProcess:
         except FileNotFoundError as e:
             raise ExecutableNotFoundError(self.command[0]) from e
 
+        inputs = inputs or self._get_default_inputs()
+
         writer = threading.Thread(target=self.writeall, args=(process, stdout))
-        reader = threading.Thread(target=self.readall, args=(process, stdin))
+        reader = threading.Thread(target=self.readall, args=(process, inputs))
         reader.start()
         writer.start()
         try:
