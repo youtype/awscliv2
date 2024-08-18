@@ -22,8 +22,12 @@ jobs:
             check-typing: "true"
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.version }}"
       - name: Install poetry
-        run: pipx install poetry
+        run: pip install poetry
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
