@@ -96,16 +96,18 @@ def install_linux(url: str) -> None:
         os.chmod(temp_dir_path / "aws" / "dist" / "aws", 0o744)
         logger.info(f"Installing {installer_path.as_posix()} to {install_path.as_posix()}")
         output = StringIO()
-        return_code = InteractiveProcess(
-            [
+        process = InteractiveProcess(
+            (
                 installer_path.as_posix(),
                 "-i",
                 install_path.as_posix(),
                 "-b",
                 bin_path.as_posix(),
-            ]
-        ).run(stdout=output)
+            )
+        )
+        return_code = process.run(stdout=output)
         if return_code:
+            logger.error(f"Command exited with non-zero status code: {process.get_command()}")
             raise InstallError(f"Installation failed: {output.getvalue()}")
 
     logger.info("Now awsv2 will use this installed version")

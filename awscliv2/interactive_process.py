@@ -35,6 +35,12 @@ class InteractiveProcess:
         self.finished = True
         self.encoding = encoding
 
+    def get_command(self) -> str:
+        """
+        Get command as a string.
+        """
+        return " ".join(self.command)
+
     def writeall(self, process: Popen, stdout: TextIO) -> None:  # type: ignore
         """
         Read output from `process` to `stdout` stream.
