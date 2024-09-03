@@ -3,6 +3,7 @@ Runner for all AWS CLI v2 commands.
 """
 
 import json
+import shlex
 import subprocess
 import sys
 from configparser import ConfigParser
@@ -73,7 +74,7 @@ class AWSAPI:
             return_code = p.poll()
 
         if return_code:
-            raise AWSCLIError(f"Command failed with code {return_code}")
+            raise AWSCLIError(f"Command {shlex.join(cmd)} failed with code {return_code}")
 
         return return_code
 
@@ -86,7 +87,9 @@ class AWSAPI:
         """
         old_output = self.output
         self.output = StringIO()
-        self.run_awscli_v2(args)
+        return_code = self.run_awscli_v2(args)
+        if return_code:
+            raise AWSCLIError(f"Command {shlex.join(args)} failed with code {return_code}")
         self.output.seek(0)
         result = self.output.read()
         self.output = old_output
@@ -144,9 +147,8 @@ class AWSAPI:
         if not credentials_path.exists():
             credentials_path.write_text("", encoding=self.encoding)
 
-        stdout = StringIO()
-        return_code = self.run_awscli_v2(
-            [
+        credentials_json = self.execute(
+            (
                 "--profile",
                 source_profile,
                 "sts",
@@ -155,12 +157,9 @@ class AWSAPI:
                 role_arn,
                 "--role-session-name",
                 f"{profile_name}-{source_profile}",
-            ],
+            )
         )
-        if return_code:
-            raise AWSCLIError(stdout.getvalue().strip())
 
-        credentials_json = stdout.getvalue()
         credentials_data = json.loads(credentials_json)
         self.set_credentials(
             profile_name=profile_name,
