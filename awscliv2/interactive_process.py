@@ -49,7 +49,8 @@ class InteractiveProcess:
             process -- Popen process
             stdout -- Stream to write
         """
-        assert process.stdout
+        if not process.stdout:
+            raise SubprocessError("Process stdout is not available")
         output = ""
         while True:
             if self.finished:
@@ -67,7 +68,8 @@ class InteractiveProcess:
 
     def _propagate_streams(self, process: Popen, inputs: Sequence[TInput]) -> bool:  # type: ignore
         has_input = False
-        assert process.stdin
+        if not process.stdin:
+            raise SubprocessError("Process stdin is not available")
         for stream_input in inputs:
             if isinstance(stream_input, socket.socket):
                 try:
@@ -100,7 +102,8 @@ class InteractiveProcess:
             process -- Popen process
             inputs -- Streams to read
         """
-        assert process.stdin
+        if not process.stdin:
+            raise SubprocessError("Process stdin is not available")
         while True:
             if self.finished:
                 break

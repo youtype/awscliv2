@@ -15,4 +15,4 @@ data = json.loads(output)
 instances = data["Reservations"][0]["Instances"]
 instance_ids = [i["InstanceId"] for i in instances]
 
-print("Instance IDs:", instance_ids)
+print("Instance IDs:", instance_ids)  # noqa: T201

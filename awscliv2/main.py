@@ -26,9 +26,9 @@ def main(args: Sequence[str]) -> int:
 
     if namespace.version:
         version = get_version()
-        print(version)
+        sys.stdout.write(f"{version}\n")
         cmd = " ".join(runner.get_awscli_v2_cmd())
-        print(f"AWS CLI v2 command: {cmd}")
+        sys.stdout.write(f"AWS CLI v2 command: {cmd}\n")
         runner.print_version()
         return 0
 
@@ -52,8 +52,7 @@ def main(args: Sequence[str]) -> int:
     if not namespace.other:
         raise AWSCLIError("No command provided")
 
-    exit_code = runner.run_awscli_v2_detached(namespace.other)
-    return exit_code
+    return runner.run_awscli_v2_detached(namespace.other)
 
 
 def main_cli() -> None:
@@ -66,5 +65,5 @@ def main_cli() -> None:
         message = str(e)
         if message:
             logger = get_logger()
-            logger.error(message)
+            logger.exception(message)
         sys.exit(e.returncode)

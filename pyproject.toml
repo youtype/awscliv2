@@ -1,24 +1,11 @@
-[tool.black]
-line-length = 100
-include = "(awscliv2|tests)/.*\\.pyi?$"
-target-version = ["py37", "py38", "py39", "py310", "py311", "py312"]
-
-[tool.isort]
-profile = "black"
-line_length = 100
-known_first_party = ["awscliv2", "tests"]
-src_paths = []
-
-[tool.poetry]
+[project]
 name = "awscliv2"
 version = "2.3.0"
+requires-python = ">=3.8"
 description = "Wrapper for AWS CLI v2"
-authors = ["Vlad Emelianov <vlad.emelianov.nz@gmail.com>"]
-license = "MIT"
+authors = [{ name = "Vlad Emelianov", email = "vlad.emelianov.nz@gmail.com" }]
+license = { file = "LICENSE" }
 readme = "README.md"
-homepage = "https://youtype.github.io/awscliv2/"
-repository = "https://github.com/youtype/awscliv2"
-documentation = "https://youtype.github.io/awscliv2/"
 keywords = ["awscli", "awscliv2", "wrapper"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -40,35 +27,40 @@ classifiers = [
     "Typing :: Typed",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-packages = [{ include = "awscliv2" }]
-include = ["LICENSE", "awscliv2/py.typed"]
+dependencies = ["importlib-metadata"]
 
-[tool.poetry.scripts]
+[project.optional-dependencies]
+build = ["setuptools"]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff",
+    "pyright",
+    "pytest",
+    "pytest-cov",
+    "pre-commit",
+    "types-setuptools",
+]
+
+
+[project.scripts]
 awscliv2 = 'awscliv2.main:main_cli'
 awsv2 = 'awscliv2.main:main_cli'
 
-[tool.poetry.urls]
-"Documentation" = "https://awscliv2.readthedocs.io/en/latest/"
-"Source" = "https://github.com/youtype/awscliv2"
-"Bug Tracker" = "https://github.com/youtype/awscliv2/issues"
-
-[tool.poetry.dependencies]
-python = "^3.7"
-pip = "*"
-importlib-metadata = { version = "*", python = "<3.8" }
-
-[tool.poetry.group.dev.dependencies]
-ruff = { version = "*", python = ">=3.10" }
-pyright = { version = "*", python = ">=3.10" }
-rope = { version = "*", python = ">=3.10" }
-handsdown = { version = "*", python = ">=3.10" }
-pytest = { version = "*", python = ">=3.10" }
-pytest-cov = { version = "*", python = ">=3.10" }
-types-setuptools = "*"
+[project.urls]
+Homepage = "https://github.com/youtype/awscliv2"
+Documentation = "https://youtype.github.io/awscliv2/"
+Repository = "https://github.com/youtype/awscliv2"
+Changelog = "https://github.com/youtype/awscliv2/releases"
+Issues = "https://github.com/youtype/awscliv2/issues"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["awscliv2", "awscliv2.*"]
 
 [tool.coverage.report]
 exclude_lines = [
@@ -91,7 +83,7 @@ reportMissingTypeArgument = "error"
 reportIncompatibleMethodOverride = "error"
 reportIncompatibleVariableOverride = "error"
 reportUnknownParameterType = "error"
-pythonVersion = "3.7"
+pythonVersion = "3.8"
 
 [tool.ruff]
 exclude = [
@@ -109,22 +101,58 @@ exclude = [
 
 line-length = 100
 indent-width = 4
-target-version = "py37"
+target-version = "py38"
 
 [tool.ruff.lint]
-select = ["E4", "E7", "E9", "F", "B", "I", "N", "D", "C4", "C90", "RUF"]
+select = [
+    "E",    # pycodestyle
+    "W",    # pycodestyle
+    "F",    # Pyflakes
+    "B",    # flake8-bugbear
+    "I",    # isort
+    "N",    # pep8-naming
+    "D",    # pydocstyle
+    "C4",   # flake8-comprehensions
+    "C90",  # mccabe
+    "RUF",  # Ruff-specific rules
+    "SIM",  # flake8-simplify
+    "PYI",  # flake8-pyi
+    "PT",   # flake8-pytest-style
+    "T",    # flake8-raise
+    "LOG",  # flake8-logging
+    "Q",    # flake8-quotes
+    "RSE",  # flake8-raise
+    "RET",  # flake8-return
+    "TID",  # flake8-tidy-imports
+    "TCH",  # flake8-type-checking
+    "S",    # flake8-bandit
+    "BLE",  # flake8-blind-except
+    "ANN",  # flake8-annotations
+    "A",    # flake8-builtins
+    "PTH",  # flake8-use-pathlib
+    "YTT",  # flake8-2020
+    "UP",   # pyupgrade
+    "TRY",  # tryceratops
+    "PERF", # Perflint
+    "FURB", # refurb
+]
 ignore = [
-    "E501",
-    "N803",
-    "N818",
-    "D107",
-    "D200",
-    "D203",
-    "D212",
-    "D406",
-    "D407",
-    "D413",
-    "D417",
+    "D107",   # undocumented-public-init
+    "D200",   # fits-on-one-line
+    "D203",   # one-blank-line-before-class
+    "D212",   # multi-line-summary-first-line
+    "D406",   # new-line-after-section-name
+    "D407",   # dashed-underline-after-section
+    "D413",   # blank-line-after-last-section
+    "D417",   # undocumented-param
+    "S310",   # suspicious-url-open-usage
+    "S404",   # suspicious-subprocess-import
+    "S603",   # subprocess-without-shell-equals-true
+    "ANN101", # missing-type-self
+    "ANN102", # missing-type-cls
+    # "ANN401",  # any-type
+    "TRY003",  # raise-vanilla-args
+    "PERF203", # try-except-in-loop
 ]
 fixable = ["ALL"]
 unfixable = ["B"]
