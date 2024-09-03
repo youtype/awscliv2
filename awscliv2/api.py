@@ -89,7 +89,8 @@ class AWSAPI:
         self.output = StringIO()
         return_code = self.run_awscli_v2(args)
         if return_code:
-            raise AWSCLIError(f"Command {shlex.join(args)} failed with code {return_code}")
+            self.output.seek(0)
+            raise AWSCLIError(f"Command {shlex.join(args)} failed with code {return_code}: {self.output.read()}")
         self.output.seek(0)
         result = self.output.read()
         self.output = old_output
