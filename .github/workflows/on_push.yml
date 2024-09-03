@@ -10,12 +10,12 @@ jobs:
     strategy:
       matrix:
         version:
-          - "3.7"
           - "3.8"
           - "3.9"
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
         include:
           - version: "3.12"
             check-formatting: "true"
@@ -26,29 +26,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "${{ matrix.version }}"
-      - name: Install poetry
-        run: pip install poetry
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "${{ matrix.version }}"
-          cache: "poetry"
-      - name: Install dependencies
-        run: |
-          poetry install -n
-      - name: Code style
-        if: ${{ matrix.check-formatting }}
-        run: |
-          poetry run ruff format --check
-      - name: Lint
-        if: ${{ matrix.check-formatting }}
-        run: |
-          poetry run ruff check
-      - name: Typing
-        if: ${{ matrix.check-typing }}
-        run: |
-          poetry run pyright awscliv2
-      - name: Test
-        run: |
-          pip install pytest
-          poetry run pytest
+          allow-prereleases: true
+      - name: Set up uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Install the project
+        run: uv sync --dev
+      - name: Run pre-commit
+        run: uv run pre-commit run --all-files

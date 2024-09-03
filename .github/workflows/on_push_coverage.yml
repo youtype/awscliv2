@@ -14,19 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install poetry
-        run: pipx install poetry
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-          cache: "poetry"
-      - name: Install dependencies
-        run: |
-          poetry install -n
+          python-version-file: pyproject.toml
+      - name: Set up uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Install the project
+        run: uv sync --dev
       - name: Build coverage report
         run: |
-          poetry run pytest --cov awscliv2 --cov-report=xml --junitxml=junit.xml
+          uv run pytest --cov awscliv2 --cov-report=xml --junitxml=junit.xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:

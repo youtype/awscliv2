@@ -151,9 +151,9 @@ aws_api.assume_role(
 
 ## Development
 
-- Install [poetry](https://python-poetry.org/)
-- Run `poetry install`
-- Use `black` formatter in your IDE
+- Install [uv](https://docs.astral.sh/uv/): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- Install dependencies: `uv sync --all-extras --dev`
+- Run manual pre-commit: `./scripts/before_commit.sh`
 
 ## How to help
 
