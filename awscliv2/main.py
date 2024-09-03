@@ -16,32 +16,32 @@ def main(args: Sequence[str]) -> int:
     """
     Entrypoint for API.
     """
-    namespace = parse_args(args)
-    runner = AWSAPI(encoding=namespace.encoding, output=sys.stdout)
+    cli = parse_args(args)
+    runner = AWSAPI(encoding=cli.encoding, output=sys.stdout)
 
-    if namespace.install or namespace.update:
+    if cli.install or cli.update:
         install_multiplatform()
         runner.print_version()
         return 0
 
-    if namespace.version:
+    if cli.version:
         version = get_version()
-        sys.stdout.write(f"{version}\n")
         cmd = " ".join(runner.get_awscli_v2_cmd())
+        sys.stdout.write(f"{version}\n")
         sys.stdout.write(f"AWS CLI v2 command: {cmd}\n")
         runner.print_version()
         return 0
 
-    if namespace.assume_role:
+    if cli.assume_role:
         try:
-            runner.assume_role(*namespace.assume_role[:3])
+            runner.assume_role(*cli.assume_role[:3])
         except TypeError:
             raise AWSCLIError("Use --assume-role <name> <source_profile> <role_arn>") from None
         return 0
 
-    if namespace.configure:
+    if cli.configure:
         try:
-            runner.set_credentials(*namespace.configure[:5])
+            runner.set_credentials(*cli.configure[:5])
         except TypeError:
             raise AWSCLIError(
                 "Use --configure <profile_name> <access_key>"
@@ -49,10 +49,10 @@ def main(args: Sequence[str]) -> int:
             ) from None
         return 0
 
-    if not namespace.other:
+    if not cli.other:
         raise AWSCLIError("No command provided")
 
-    return runner.run_awscli_v2_detached(namespace.other)
+    return runner.run_awscli_v2_detached(cli.other)
 
 
 def main_cli() -> None:
