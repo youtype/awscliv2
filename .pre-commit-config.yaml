@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: lint
+        name: lint
+        language: system
+        pass_filenames: false
+        entry: uvx ruff check --fix
+      - id: format
+        name: format
+        language: system
+        pass_filenames: false
+        entry: uvx ruff format
+      - id: pyright
+        name: pyright
+        language: system
+        pass_filenames: false
+        entry: uvx pyright
+      - id: pytest
+        name: pytest
+        language: system
+        pass_filenames: false
+        entry: uvx pytest

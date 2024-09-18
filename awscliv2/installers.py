@@ -2,7 +2,6 @@
 AWS CLI v2 installers.
 """
 
-import os
 import platform
 import shutil
 from io import StringIO
@@ -92,8 +91,8 @@ def install_linux(url: str) -> None:
                 zip_obj.extractall(temp_dir_path.as_posix())
 
         installer_path = temp_dir_path / "aws" / "install"
-        os.chmod(installer_path, 0o744)
-        os.chmod(temp_dir_path / "aws" / "dist" / "aws", 0o744)
+        installer_path.chmod(0o744)
+        (temp_dir_path / "aws" / "dist" / "aws").chmod(0o744)
         logger.info(f"Installing {installer_path.as_posix()} to {install_path.as_posix()}")
         output = StringIO()
         process = InteractiveProcess(

@@ -14,14 +14,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: docs
-      - name: Install poetry
-        run: pipx install poetry
       - name: Set up Python
         id: python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: "poetry"
+      - name: Set up uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Setup git
         run: |
           git config --global user.email "github-actions@github.com"
@@ -33,16 +32,17 @@ jobs:
           git rebase main
       - name: Install dependencies
         run: |
-          poetry install -n
-          poetry run pip install -r requirements.mkdocs.txt
+          uv sync --dev
+          uv run pip install -r requirements.mkdocs.txt
       - name: Build docs
         run: |
-          poetry run handsdown --external `git config --get remote.origin.url` -o docsmd --cleanup --theme material --branch main
+          uv run pip install handsdown
+          uv run handsdown --external `git config --get remote.origin.url` -o docsmd --cleanup --theme material --branch main
       - name: Build html docs
         run: |
           rm -rf docs
           echo `ls -lh`
-          poetry run mkdocs build
+          uv run mkdocs build
       - name: Commit docs
         run: |
           git add docs docsmd

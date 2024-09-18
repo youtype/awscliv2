@@ -16,39 +16,15 @@ jobs:
           - "3.10"
           - "3.11"
           - "3.12"
-        include:
-          - version: "3.12"
-            check-formatting: "true"
-            check-typing: "true"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "${{ matrix.version }}"
-      - name: Install poetry
-        run: pip install poetry
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "${{ matrix.version }}"
-          cache: "poetry"
+      - name: Set up uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install dependencies
-        run: |
-          poetry install -n
-      - name: Code style
-        if: ${{ matrix.check-formatting }}
-        run: |
-          poetry run ruff format --check
-      - name: Lint
-        if: ${{ matrix.check-formatting }}
-        run: |
-          poetry run ruff check
-      - name: Typing
-        if: ${{ matrix.check-typing }}
-        run: |
-          poetry run pyright awscliv2
-      - name: Test
-        run: |
-          pip install pytest
-          poetry run pytest
+        run: uv sync --dev
+      - name: Run pre-commit
+        run: uvx pre-commit run --all-files
