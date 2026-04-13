@@ -71,7 +71,10 @@ class AWSAPI:
         p = subprocess.Popen(cmd, encoding=self.encoding)
         return_code: Optional[int] = None
         while return_code is None:
-            return_code = p.poll()
+            try:
+                return_code = p.wait(timeout=1)
+            except subprocess.TimeoutExpired:
+                return_code = None
 
         if return_code:
             raise AWSCLIError(f"Command {shlex.join(cmd)} failed with code {return_code}")
